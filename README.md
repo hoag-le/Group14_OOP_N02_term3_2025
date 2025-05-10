@@ -8,7 +8,7 @@ Lê Xuân Hoàng, Nguyễn Tiến Hoàng Vũ, Nguyễn Anh Quân
 Quản lý thư viện sách
 
 ## ReadMe giới thiệu project:
-Link: 
+Link: https://github.com/hoag-le/Group14_OOP_N02_term3_2025
 
 ## Đối Tượng:
 - Sách (Book)
