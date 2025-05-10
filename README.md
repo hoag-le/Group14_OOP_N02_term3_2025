@@ -10,8 +10,8 @@ Quản lý thư viện sách
 ## ReadMe giới thiệu project:
 Link: 
 
-## Đói Tượng:
-- Sách
-- Người dùng (User)
-- Phiếu mượn (BorowRecord)
+## Đối Tượng:
+- Sách (Book)
+- Thành viên (Member)
+- Thư viện (Library)
 
