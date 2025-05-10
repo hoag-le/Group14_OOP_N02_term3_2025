@@ -15,9 +15,9 @@ git clone [địa-chỉ-repo]
 ```
 ## Các Tính Năng Đã Triển Khai
 Quản lý sách:
-Thêm/xem sách
-Mượn/trả sách
+- Thêm/xem sách
+- Mượn/trả sách
 Quản lý thành viên:
-Theo dõi sách đang mượn
+- Theo dõi sách đang mượn
 Kiểm thử:
-9 test cases cho các nghiệp vụ cơ bản
+- 9 test cases cho các nghiệp vụ cơ bản
