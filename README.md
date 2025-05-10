@@ -14,5 +14,3 @@ Link:
 - Sách (Book)
 - Thành viên (Member)
 - Thư viện (Library)
-
-## 
