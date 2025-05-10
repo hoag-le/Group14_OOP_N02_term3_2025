@@ -9,11 +9,11 @@
 - JUnit 4.12 (để chạy test)
 
 ## Cách Cài Đặt
-1. Clone repository:
+Clone repository:
 ```bash
 git clone [địa-chỉ-repo]
-
-Các Tính Năng Đã Triển Khai
+```
+## Các Tính Năng Đã Triển Khai
 Quản lý sách:
 Thêm/xem sách
 Mượn/trả sách
