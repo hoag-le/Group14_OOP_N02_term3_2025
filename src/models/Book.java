@@ -29,7 +29,7 @@ public class Book {
         if (isAvailable) {
             isAvailable = false;
         } else {
-            System.out.println("Book is already checked out");
+            //System.out.println("Book is already checked out");
         }
     }
 
@@ -37,7 +37,7 @@ public class Book {
         if (!isAvailable) {
             isAvailable = true;
         } else {
-            System.out.println("Book was not checked out");
+            //System.out.println("Book was not checked out");
         }
     }
 }

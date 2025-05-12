@@ -1,3 +1,4 @@
+package test.models;
 import models.Book;
 import org.junit.Test;
 import static org.junit.Assert.*;

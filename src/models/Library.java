@@ -36,6 +36,13 @@ public class Library {
         return null;
     }
 
+    public List<Book> getBooks() {
+        return this.books;
+    }
+    public List<Member> getMembers() {
+        return this.members;
+    }
+    
     public void displayAvailableBooks() {
         System.out.println("Available Books:");
         for (Book book : books) {
