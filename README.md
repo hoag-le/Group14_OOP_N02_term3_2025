@@ -14,7 +14,6 @@ Link: [https://github.com/hoag-le/Group14_OOP_N02_term3_2025](https://github.com
 - Sách (Book)
 - Thành viên (Member)
 - Thư viện (Library)
-<<<<<<< HEAD
 =======
 
 
