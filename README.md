@@ -65,4 +65,3 @@ Link: [https://github.com/hoag-le/Group14_OOP_N02_term3_2025](https://github.com
     *   Mô tả các chức năng chính của hệ thống từ góc độ người dùng (actors).
     *   Ví dụ: Actor "Thủ thư" có các use case: "Quản lý Sách", "Quản lý Thành viên", "Quản lý Mượn/Trả". Actor "Thành viên" có use case: "Tìm kiếm Sách", "Xem thông tin cá nhân".
     *   *[Placeholder cho hình ảnh/liên kết Sơ đồ Ca sử dụng]*
->>>>>>> 7c960bf (u1)
