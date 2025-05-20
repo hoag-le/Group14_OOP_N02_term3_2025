@@ -43,7 +43,7 @@ Link: [https://github.com/hoag-le/Group14_OOP_N02_term3_2025](https://github.com
 *   `Library`: Lớp quản lý chính, chứa danh sách các `Book`, `Member`, `BorrowingRecord`; cung cấp các phương thức nghiệp vụ (thêm/sửa/xóa sách/thành viên, cho mượn, nhận trả, tìm kiếm, lưu/tải dữ liệu).
 *   `Author` (Tùy chọn): Nếu muốn quản lý thông tin tác giả chi tiết.
 *   `Category` (Tùy chọn): Nếu muốn quản lý thông tin thể loại chi tiết.
-*   `DataManager` (Tùy chọn): Lớp chuyên trách việc đọc/ghi dữ liệu từ file nhị phân.  
+*   `DataManager` (Tùy chọn): Lớp chuyên trách việc đọc/ghi dữ liệu từ file nhị phân.
 
 ![Class Diagram](/docs/ClassDiagram.png)
 
