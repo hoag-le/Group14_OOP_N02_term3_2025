@@ -66,3 +66,32 @@ Link: [https://github.com/hoag-le/Group14_OOP_N02_term3_2025](https://github.com
     *   *[Placeholder cho hình ảnh/liên kết Sơ đồ Ca sử dụng]*
     *   
 ![Behavioural Diagrams](/docs/SequenceDiagram.jpg)
+
+###CRUD
+1. 📚 Sách (Book)
+create_book(): Thêm sách mới
+
+get_books(): Lấy danh sách sách
+
+update_book(book_id): Cập nhật thông tin sách
+
+delete_book(book_id): Xóa sách
+
+2. 👤 Thành viên (Member)
+create_member()
+
+get_members()
+
+update_member(member_id)
+
+delete_member(member_id)
+
+3. 🏛️ Thư viện (Library)
+create_library()
+
+get_libraries()
+
+update_library(library_id)
+
+delete_library(library_id)
+
