@@ -71,27 +71,27 @@ Link: [https://github.com/hoag-le/Group14_OOP_N02_term3_2025](https://github.com
 1. 📚 Sách (Book)
 create_book(): Thêm sách mới
 
-get_books(): Lấy danh sách sách
+* get_books(): Lấy danh sách sách
 
-update_book(book_id): Cập nhật thông tin sách
+* update_book(book_id): Cập nhật thông tin sách
 
-delete_book(book_id): Xóa sách
+* delete_book(book_id): Xóa sách
 
 2. 👤 Thành viên (Member)
 create_member()
 
-get_members()
+* get_members()
 
-update_member(member_id)
+* update_member(member_id)
 
-delete_member(member_id)
+* delete_member(member_id)
 
 3. 🏛️ Thư viện (Library)
 create_library()
 
-get_libraries()
+* get_libraries()
 
-update_library(library_id)
+* update_library(library_id)
 
-delete_library(library_id)
+* delete_library(library_id)
 
