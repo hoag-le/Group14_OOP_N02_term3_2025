@@ -65,4 +65,4 @@ Link: [https://github.com/hoag-le/Group14_OOP_N02_term3_2025](https://github.com
     *   Ví dụ: Actor "Thủ thư" có các use case: "Quản lý Sách", "Quản lý Thành viên", "Quản lý Mượn/Trả". Actor "Thành viên" có use case: "Tìm kiếm Sách", "Xem thông tin cá nhân".
     *   *[Placeholder cho hình ảnh/liên kết Sơ đồ Ca sử dụng]*
     *   
-![Behavioural Diagrams](/docs/Sequence Diagram.jpg)
+![Behavioural Diagrams](/docs/SequenceDiagram.jpg)
