@@ -68,7 +68,7 @@ Link: [https://github.com/hoag-le/Group14_OOP_N02_term3_2025](https://github.com
 ![Behavioural Diagrams](/docs/SequenceDiagram.jpg)
 
 ### CRUD
-1. 📚 Sách (Book)
+1. Sách (Book)
 create_book(): Thêm sách mới
 
 * get_books(): Lấy danh sách sách
@@ -77,7 +77,7 @@ create_book(): Thêm sách mới
 
 * delete_book(book_id): Xóa sách
 
-2. 👤 Thành viên (Member)
+2. Thành viên (Member)
 create_member()
 
 * get_members()
@@ -86,7 +86,7 @@ create_member()
 
 * delete_member(member_id)
 
-3. 🏛️ Thư viện (Library)
+3. Thư viện (Library)
 create_library()
 
 * get_libraries()
@@ -94,4 +94,3 @@ create_library()
 * update_library(library_id)
 
 * delete_library(library_id)
-
