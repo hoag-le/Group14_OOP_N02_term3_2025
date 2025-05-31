@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Member {
-    private String memberId;
+    private int id;
     private String name;
     private List<Book> borrowedBooks;
 
-    public Member(String memberId, String name) {
-        this.memberId = memberId;
+    public Member(int id, String name) {
+        this.id = id;
         this.name = name;
         this.borrowedBooks = new ArrayList<>();
     }
-    public String getMemberId() {
-        return memberId;
+    public int getId() {
+        return id;
     }
     public String getName() {
         return name;

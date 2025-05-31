@@ -1,19 +1,19 @@
 package models;
 
 public class Book {
-    private String bookId;
+    private int id;
     private String title;
     private String author;
     private boolean isAvailable;
 
-    public Book(String bookId, String title, String author) {
-        this.bookId = bookId;
+    public Book(int id, String title, String author) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.isAvailable = true;
     }
-    public String getBookId() {
-        return bookId;
+    public int getId() {
+        return id;
     }
     public String getTitle() {
         return title;
@@ -28,16 +28,12 @@ public class Book {
     public void checkOut() {
         if (isAvailable) {
             isAvailable = false;
-        } else {
-            //System.out.println("Book is already checked out");
         }
     }
 
     public void returnBook() {
         if (!isAvailable) {
             isAvailable = true;
-        } else {
-            //System.out.println("Book was not checked out");
         }
     }
 }

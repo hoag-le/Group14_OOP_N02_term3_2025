@@ -13,9 +13,9 @@ public class LibraryTest {
 
     @Before
     public void setUp() {
-        library = new Library();
-        book = new Book("B006", "Design Patterns", "GoF");
-        member = new Member("M003", "Hoang");
+        library = new Library(1, "Central Library");
+        book = new Book(6, "Design Patterns", "GoF");
+        member = new Member(3, "Hoang");
         
         library.addBook(book);
         library.addMember(member);
@@ -28,7 +28,7 @@ public class LibraryTest {
 
     @Test
     public void testFindBook() {
-        Book found = library.findBookById("B006");
+        Book found = library.findBookById(6);
         assertNotNull(found);
         assertEquals("Design Patterns", found.getTitle());
     }
@@ -37,5 +37,22 @@ public class LibraryTest {
     public void testLibraryOperations() {
         member.borrowBook(book);
         assertFalse(book.isAvailable());
+    }
+    
+    @Test
+    public void testLibraryCRUDOperations() {
+        Book newBook = new Book(7, "New Book", "New Author");
+        library.addBook(newBook);
+        
+        Book found = library.findBookById(7);
+        assertNotNull(found);
+        assertEquals("New Book", found.getTitle());
+        
+        // Test member operations
+        Member newMember = new Member(4, "New Member");
+        library.addMember(newMember);
+        
+        Member foundMember = library.findMemberById(4);
+        assertNotNull(foundMember);
     }
 }
