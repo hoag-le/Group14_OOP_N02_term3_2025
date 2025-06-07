@@ -95,4 +95,6 @@ create_library()
 
 * delete_library(library_id)
 
-### Lưu đồ thuật toán
+### Lưu đồ thuật toán 
+
+![Lưu đồ chức năng chính](images/luu_do.png)
