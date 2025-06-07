@@ -94,3 +94,5 @@ create_library()
 * update_library(library_id)
 
 * delete_library(library_id)
+
+### Lưu đồ thuật toán
