@@ -97,4 +97,4 @@ create_library()
 
 ### Lưu đồ thuật toán 
 
-![Lưu đồ chức năng chính](images/luu_do.png)
+![Lưu đồ chức năng chính](docs/luu_do.png)
