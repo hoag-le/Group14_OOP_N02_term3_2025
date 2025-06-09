@@ -40,4 +40,17 @@ public class Member {
             System.out.println("This book was not borrowed by this member");
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Member member = (Member) obj;
+        return id == member.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(id);
+    }
 }
