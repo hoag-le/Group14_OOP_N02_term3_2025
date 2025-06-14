@@ -1,4 +1,4 @@
-package models;
+package com.example.servingwebcontent.models;
 
 public class Book {
     private int id;

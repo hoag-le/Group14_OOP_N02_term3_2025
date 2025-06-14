@@ -1,6 +1,7 @@
-package test.repository;
+package com.example.servingwebcontent.test.repository;
 
-import models.Book;
+import com.example.servingwebcontent.models.Book;
+
 import org.junit.Before;
 import org.junit.Test;
 import repository.GenericRepository;
