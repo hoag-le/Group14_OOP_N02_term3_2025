@@ -1,23 +1,19 @@
-package com.example.servingwebcontent;
+package com.example.complete;
 
-import com.example.servingwebcontent.models.Library;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+
+// Import class LibraryNotifier
+import com.example.complete.LibraryNotifier;
 
 @SpringBootApplication
 public class ServingWebContentApplication {
 
     public static void main(String[] args) {
+        // Chạy Spring Boot
         SpringApplication.run(ServingWebContentApplication.class, args);
-    }
 
-    @Bean
-    public CommandLineRunner run() {
-        return args -> {
-            Library library = new Library();
-            library.notifyBooksDueSoon();
-        };
+        // Gọi chức năng thông báo sách sắp đến hạn
+        LibraryNotifier.notifyUsers();
     }
 }
