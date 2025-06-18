@@ -101,7 +101,7 @@ create_library()
 
 🧪 Phương thức: kiemTraSachGanDenHanTra (Nguyễn Tiến Hoàng Vũ) 
 
-**Miêu tả phương thức 
+**Miêu tả phương thức**
 
 * Tên phương thức: kiemTraSachGanDenHanTra
 
