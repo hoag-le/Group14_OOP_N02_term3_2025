@@ -1,16 +1,20 @@
 package com.example.servingwebcontent.models;
 
+import java.time.LocalDate;
+
 public class Book {
     private int id;
     private String title;
     private String author;
     private boolean isAvailable;
+    private LocalDate dueDate; // Thêm ngày hết hạn
 
-    public Book(int id, String title, String author) {
+    public Book(int id, String title, String author,LocalDate dueDate) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.isAvailable = true;
+        this.dueDate = dueDate; // Gán ngày hết hạn khi tạo sách
     }
     public int getId() {
         return id;
@@ -23,6 +27,10 @@ public class Book {
     }
     public boolean isAvailable() {
         return isAvailable;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
     }
 
     public void checkOut() {
