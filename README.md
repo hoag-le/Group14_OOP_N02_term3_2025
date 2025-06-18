@@ -101,7 +101,7 @@ create_library()
 
 ### Phương thức 
  
-**1. Phương thức: kiemTraSachGanDenHanTra (Nguyễn Tiến Hoàng Vũ)**
+**1. Phương thức: Kiểm tra sách gần đến hạn trả (Nguyễn Tiến Hoàng Vũ)**
 
 - Miêu tả phương thức:
 
@@ -116,3 +116,4 @@ create_library()
 * soNgayCanhBao: số nguyên – khoảng cảnh báo (ví dụ: 3 ngày)
 
 * Giá trị trả về: true nếu ngày trả nằm trong khoảng từ hiện tại đến (hiện tại + soNgayCanhBao), ngược lại false.
+**2. Phương thức: In thông báo đến bạn đọc sách gần hết hạn (Nguyễn Anh Quân)**
