@@ -26,5 +26,6 @@ public class Main {
         for (Library l : libraryRepo.listAll()) {
             System.out.println("Library: " + l.getId() + " - " + l.getName());
         }
+        TestReturnBook.main(args);
     }
 }
