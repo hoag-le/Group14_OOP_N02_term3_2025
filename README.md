@@ -115,5 +115,36 @@ create_library()
 
 * soNgayCanhBao: số nguyên – khoảng cảnh báo (ví dụ: 3 ngày)
 
-* Giá trị trả về: true nếu ngày trả nằm trong khoảng từ hiện tại đến (hiện tại + soNgayCanhBao), ngược lại false.
-**2. Phương thức: In thông báo đến bạn đọc sách gần hết hạn (Nguyễn Anh Quân)**
+* Giá trị trả về: true nếu ngày trả nằm trong khoảng từ hiện tại đến (hiện tại + soNgayCanhBao), ngược lại false. 
+
+**2. Phương thức: In thông báo đến bạn đọc sách gần hết hạn (Nguyễn Anh Quân)**  
+
+- Miêu tả phương thức:
+
+* Tên phương thức: inThongBaoSachGanHetHan
+
+* Mục đích: In thông báo cho bạn đọc có sách sắp đến hạn trả.
+
+* Tham số đầu vào:
+
+* danhSachPhieuMuon: Danh sách các phiếu mượn
+
+* soNgayCanhBao: số nguyên – khoảng cảnh báo (ví dụ: 3 ngày)
+
+* Giá trị trả về: Không trả về (void). In ra thông tin bạn đọc nếu phiếu mượn gần đến hạn trả (dựa vào phương thức kiemTraSachGanDenHanTra).
+
+**3. Phương thức: In danh sách được mượn bởi bạn đọc (Lê Xuân Hoàng)** 
+
+- Miêu tả phương thức:
+
+* Tên phương thức: inDanhSachSachDuocMuon
+
+* Mục đích: In danh sách các sách đang được mượn bởi một bạn đọc cụ thể.
+
+* Tham số đầu vào:
+
+* danhSachPhieuMuon: Danh sách các phiếu mượn
+
+* maBanDoc: Mã số của bạn đọc cần tra cứu
+
+* Giá trị trả về: Không trả về (void). In ra danh sách tên sách mà bạn đọc có mã maBanDoc đang mượn.
