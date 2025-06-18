@@ -99,8 +99,10 @@ create_library()
 
 ![Lưu đồ chức năng chính](docs/luu_do.png)
 
-🧪 Phương thức: kiemTraSachGanDenHanTra (Nguyễn Tiến Hoàng Vũ)
-** 1. Miêu tả phương thức
+🧪 Phương thức: kiemTraSachGanDenHanTra (Nguyễn Tiến Hoàng Vũ) 
+
+** Miêu tả phương thức 
+
 * Tên phương thức: kiemTraSachGanDenHanTra
 
 * Mục đích: Kiểm tra xem phiếu mượn có nằm trong khoảng thời gian gần đến hạn trả hay không.
