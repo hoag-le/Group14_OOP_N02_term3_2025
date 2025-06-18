@@ -98,3 +98,17 @@ create_library()
 ### Lưu đồ thuật toán 
 
 ![Lưu đồ chức năng chính](docs/luu_do.png)
+
+🧪 Phương thức: kiemTraSachGanDenHanTra (Nguyễn Tiến Hoàng Vũ)
+1. Miêu tả phương thức
+Tên phương thức: kiemTraSachGanDenHanTra
+
+Mục đích: Kiểm tra xem phiếu mượn có nằm trong khoảng thời gian gần đến hạn trả hay không.
+
+Tham số đầu vào:
+
+phieuMuon: Đối tượng PhieuMuon
+
+soNgayCanhBao: số nguyên – khoảng cảnh báo (ví dụ: 3 ngày)
+
+Giá trị trả về: true nếu ngày trả nằm trong khoảng từ hiện tại đến (hiện tại + soNgayCanhBao), ngược lại false.
