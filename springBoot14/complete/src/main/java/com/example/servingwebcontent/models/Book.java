@@ -1,39 +1,36 @@
 package com.example.servingwebcontent.models;
 
-public class Book {
-    private int id;
-    private String title;
-    private String author;
-    private boolean isAvailable;
+import java.time.LocalDate;
 
-    public Book(int id, String title, String author) {
-        this.id = id;
+public class Book {
+    private String title;
+    private String borrowerName;
+    private LocalDate dueDate;
+
+    public Book(String title, String borrowerName, LocalDate dueDate) {
         this.title = title;
-        this.author = author;
-        this.isAvailable = true;
+        this.borrowerName = borrowerName;
+        this.dueDate = dueDate;
     }
-    public int getId() {
-        return id;
-    }
+
     public String getTitle() {
         return title;
     }
-    public String getAuthor() {
-        return author;
-    }
-    public boolean isAvailable() {
-        return isAvailable;
+
+    public String getBorrowerName() {
+        return borrowerName;
     }
 
-    public void checkOut() {
-        if (isAvailable) {
-            isAvailable = false;
-        }
+    public LocalDate getDueDate() {
+        return dueDate;
     }
 
-    public void returnBook() {
-        if (!isAvailable) {
-            isAvailable = true;
-        }
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", borrowerName='" + borrowerName + '\'' +
+                ", dueDate=" + dueDate +
+                '}';
     }
 }
