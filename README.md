@@ -97,11 +97,13 @@ create_library()
 
 ### Lưu đồ thuật toán 
 
-![Lưu đồ chức năng chính](docs/luu_do.png)
- 
-1. Phương thức: kiemTraSachGanDenHanTra (Nguyễn Tiến Hoàng Vũ) 
+![Lưu đồ chức năng chính](docs/luu_do.png) 
 
-**Miêu tả phương thức:**
+### Phương thức 
+ 
+**1. Phương thức: kiemTraSachGanDenHanTra (Nguyễn Tiến Hoàng Vũ)**
+
+- Miêu tả phương thức:
 
 * Tên phương thức: kiemTraSachGanDenHanTra
 
