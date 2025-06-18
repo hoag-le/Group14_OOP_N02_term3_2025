@@ -99,7 +99,7 @@ create_library()
 
 ![Lưu đồ chức năng chính](docs/luu_do.png)
  
-Phương thức: kiemTraSachGanDenHanTra (Nguyễn Tiến Hoàng Vũ) 
+1. Phương thức: kiemTraSachGanDenHanTra (Nguyễn Tiến Hoàng Vũ) 
 
 **Miêu tả phương thức:**
 
