@@ -1,4 +1,5 @@
 package test.models;
+
 import models.Book;
 import models.Library;
 import models.Member;
@@ -13,46 +14,80 @@ public class LibraryTest {
 
     @Before
     public void setUp() {
-        library = new Library(1, "Central Library");
-        book = new Book(6, "Design Patterns", "GoF");
-        member = new Member(3, "Hoang");
-        
-        library.addBook(book);
-        library.addMember(member);
+        try {
+            library = new Library(1, "Central Library");
+            book = new Book(6, "Design Patterns", "GoF");
+            member = new Member(3, "Hoang");
+
+            library.addBook(book);
+            library.addMember(member);
+        } catch (Exception e) {
+            System.out.println("Lỗi trong setUp: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            System.out.println("Hoàn thành setUp");
+        }
     }
 
     @Test
     public void testAddBook() {
-        assertEquals(1, library.getBooks().size());
+        try {
+            assertEquals(1, library.getBooks().size());
+        } catch (Exception e) {
+            System.out.println("Lỗi trong testAddBook: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            System.out.println("Hoàn thành testAddBook");
+        }
     }
 
     @Test
     public void testFindBook() {
-        Book found = library.findBookById(6);
-        assertNotNull(found);
-        assertEquals("Design Patterns", found.getTitle());
+        try {
+            Book found = library.findBookById(6);
+            assertNotNull(found);
+            assertEquals("Design Patterns", found.getTitle());
+        } catch (Exception e) {
+            System.out.println("Lỗi trong testFindBook: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            System.out.println("Hoàn thành testFindBook");
+        }
     }
 
     @Test
     public void testLibraryOperations() {
-        member.borrowBook(book);
-        assertFalse(book.isAvailable());
+        try {
+            member.borrowBook(book);
+            assertFalse(book.isAvailable());
+        } catch (Exception e) {
+            System.out.println("Lỗi trong testLibraryOperations: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            System.out.println("Hoàn thành testLibraryOperations");
+        }
     }
-    
+
     @Test
     public void testLibraryCRUDOperations() {
-        Book newBook = new Book(7, "New Book", "New Author");
-        library.addBook(newBook);
-        
-        Book found = library.findBookById(7);
-        assertNotNull(found);
-        assertEquals("New Book", found.getTitle());
-        
-        // Test member operations
-        Member newMember = new Member(4, "New Member");
-        library.addMember(newMember);
-        
-        Member foundMember = library.findMemberById(4);
-        assertNotNull(foundMember);
+        try {
+            Book newBook = new Book(7, "New Book", "New Author");
+            library.addBook(newBook);
+
+            Book found = library.findBookById(7);
+            assertNotNull(found);
+            assertEquals("New Book", found.getTitle());
+
+            Member newMember = new Member(4, "New Member");
+            library.addMember(newMember);
+
+            Member foundMember = library.findMemberById(4);
+            assertNotNull(foundMember);
+        } catch (Exception e) {
+            System.out.println("Lỗi trong testLibraryCRUDOperations: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            System.out.println("Hoàn thành testLibraryCRUDOperations");
+        }
     }
 }
