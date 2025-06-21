@@ -1,5 +1,8 @@
-package com.example.servingwebcontent.models;
+package com.example.servingwebcontent.service;
 import java.util.Date;
+
+import com.example.servingwebcontent.models.Book;
+import com.example.servingwebcontent.models.Member;
 
 public class BorrowRecord {
     private Book book;

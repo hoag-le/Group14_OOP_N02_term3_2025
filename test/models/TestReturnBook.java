@@ -1,12 +1,14 @@
-package com.example.servingwebcontent.models;
+package test.models;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.lang.reflect.Member;
+import java.time.LocalDate;
 
 public class TestReturnBook {
     public static void main(String[] args) {
         Library lib = new Library(1, "CNTT Library");
-        Book book = new Book(100, "OOP Java", "Nguyen Van A");
+        Book book = new Book(100, "OOP Java", "Nguyen Van A", LocalDate.now().plusDays(7));
         Member mem = new Member(10, "Hoang Le");
 
         lib.addBook(book);
