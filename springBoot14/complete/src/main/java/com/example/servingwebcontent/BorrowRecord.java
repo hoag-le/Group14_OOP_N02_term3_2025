@@ -1,4 +1,4 @@
-package com.example.servingwebcontent.service;
+package com.example.servingwebcontent;
 import java.util.Date;
 
 import com.example.servingwebcontent.models.Book;
