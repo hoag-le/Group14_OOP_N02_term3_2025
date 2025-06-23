@@ -1,3 +1,17 @@
+package controller;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.example.servingwebcontent.PhieuMuon;
+import com.example.servingwebcontent.service.ThuVienService;
+
 @Controller
 public class ThuVienController {
 
@@ -28,8 +42,8 @@ public class ThuVienController {
     // Giả lập dữ liệu (hoặc gọi từ DB)
     private List<PhieuMuon> layDanhSachPhieuMuon() {
         return List.of(
-            new PhieuMuon("Vũ", "SpringBoot", LocalDate.now().minusDays(4), LocalDate.now().plusDays(2)),
-            new PhieuMuon("An", "Java Cơ Bản", LocalDate.now().minusDays(10), LocalDate.now().plusDays(6))
+            new PhieuMuon("PM001", "Vũ", LocalDate.now().plusDays(2)),
+            new PhieuMuon("PM002", "An", LocalDate.now().plusDays(6))
         );
     }
 }
