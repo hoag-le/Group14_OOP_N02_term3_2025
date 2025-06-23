@@ -24,20 +24,32 @@ public class Member {
     }
 
     public void borrowBook(Book book) {
-        if (book.isAvailable()) {
-            book.checkOut();
-            borrowedBooks.add(book);
-        } else {
-            System.out.println("Book is not available for borrowing");
+        try {
+            if (book.isAvailable()) {
+                book.checkOut();
+                borrowedBooks.add(book);
+            } else {
+                System.out.println("Book is not available for borrowing");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("borrowBook executed");
         }
     }
 
     public void returnBook(Book book) {
-        if (borrowedBooks.contains(book)) {
-            book.returnBook();
-            borrowedBooks.remove(book);
-        } else {
-            System.out.println("This book was not borrowed by this member");
+        try {
+            if (borrowedBooks.contains(book)) {
+                book.returnBook();
+                borrowedBooks.remove(book);
+            } else {
+                System.out.println("This book was not borrowed by this member");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("returnBook executed");
         }
     }
 }

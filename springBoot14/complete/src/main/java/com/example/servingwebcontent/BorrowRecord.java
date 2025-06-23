@@ -30,7 +30,13 @@ public class BorrowRecord {
     public void setDueDate(Date d) { this.dueDate = d; }
     
     public void setReturned(Date returnDate) {
-        this.isReturned = true;
-        this.returnDate = returnDate;
+        try {
+            this.isReturned = true;
+            this.returnDate = returnDate;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("setReturned executed");
+        }
     }
 }

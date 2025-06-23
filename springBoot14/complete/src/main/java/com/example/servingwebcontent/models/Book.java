@@ -34,14 +34,26 @@ public class Book {
     }
 
     public void checkOut() {
-        if (isAvailable) {
-            isAvailable = false;
+        try {
+            if (isAvailable) {
+                isAvailable = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("checkOut executed");
         }
     }
 
     public void returnBook() {
-        if (!isAvailable) {
-            isAvailable = true;
+        try {
+            if (!isAvailable) {
+                isAvailable = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("returnBook executed");
         }
     }
 }

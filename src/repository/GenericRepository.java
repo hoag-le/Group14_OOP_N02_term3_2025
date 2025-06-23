@@ -13,26 +13,53 @@ public class GenericRepository<T> implements CrudRepository<T> {
 
     @Override
     public void create(T obj) {
-        storage.put(idGetter.apply(obj), obj);
+        try {
+            storage.put(idGetter.apply(obj), obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
     }
 
     @Override
     public T read(int id) {
-        return storage.get(id);
+        try {
+            return storage.get(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+        }
     }
 
     @Override
     public void update(T obj) {
-        storage.put(idGetter.apply(obj), obj);
+        try {
+            storage.put(idGetter.apply(obj), obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
     }
 
     @Override
     public void delete(int id) {
-        storage.remove(id);
+        try {
+            storage.remove(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
     }
 
     @Override
     public List<T> listAll() {
-        return new ArrayList<>(storage.values());
+        try {
+            return new ArrayList<>(storage.values());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        } finally {
+        }
     }
 }

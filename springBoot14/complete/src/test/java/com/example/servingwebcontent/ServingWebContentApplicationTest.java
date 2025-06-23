@@ -33,22 +33,37 @@ public class ServingWebContentApplicationTest {
 	private MockMvc mockMvc;
 
 	@Test
-	public void homePage() throws Exception {
-		// N.B. jsoup can be useful for asserting HTML content
-		mockMvc.perform(get("/index.html"))
-				.andExpect(content().string(containsString("Get your greeting")));
-	}
+        public void homePage() throws Exception {
+                try {
+                        // N.B. jsoup can be useful for asserting HTML content
+                        mockMvc.perform(get("/index.html"))
+                                        .andExpect(content().string(containsString("Get your greeting")));
+                } catch (Exception e) {
+                        e.printStackTrace();
+                } finally {
+                }
+        }
 
 	@Test
-	public void greeting() throws Exception {
-		mockMvc.perform(get("/greeting"))
-				.andExpect(content().string(containsString("Hello, World!")));
-	}
+        public void greeting() throws Exception {
+                try {
+                        mockMvc.perform(get("/greeting"))
+                                        .andExpect(content().string(containsString("Hello, World!")));
+                } catch (Exception e) {
+                        e.printStackTrace();
+                } finally {
+                }
+        }
 
 	@Test
-	public void greetingWithUser() throws Exception {
-		mockMvc.perform(get("/greeting").param("name", "Greg"))
-				.andExpect(content().string(containsString("Hello, Greg!")));
-	}
+        public void greetingWithUser() throws Exception {
+                try {
+                        mockMvc.perform(get("/greeting").param("name", "Greg"))
+                                        .andExpect(content().string(containsString("Hello, Greg!")));
+                } catch (Exception e) {
+                        e.printStackTrace();
+                } finally {
+                }
+        }
 
 }

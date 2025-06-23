@@ -31,69 +31,103 @@ public class Library {
     }
 
     public String borrowBook(int memberId, int bookId, int borrowDays) {
-    Member member = findMemberById(memberId);
-    Book book = findBookById(bookId);
-    if (member == null || book == null || !book.isAvailable()) {
+    try {
+        Member member = findMemberById(memberId);
+        Book book = findBookById(bookId);
+        if (member == null || book == null || !book.isAvailable()) {
+            return "Không thể mượn sách";
+            }
+        Date borrowDate = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(borrowDate);
+        cal.add(Calendar.DATE, borrowDays);
+        Date dueDate = cal.getTime();
+
+        BorrowRecord record = new BorrowRecord(book, member, borrowDate, dueDate);
+        borrowRecords.add(record);
+
+        member.borrowBook(book);
+        return "Mượn sách thành công! Hạn trả: " + dueDate;
+    } catch (Exception e) {
+        e.printStackTrace();
         return "Không thể mượn sách";
-        }
-    Date borrowDate = new Date();
-    Calendar cal = Calendar.getInstance();
-    cal.setTime(borrowDate);
-    cal.add(Calendar.DATE, borrowDays);
-    Date dueDate = cal.getTime();
-
-    BorrowRecord record = new BorrowRecord(book, member, borrowDate, dueDate);
-    borrowRecords.add(record);
-
-    member.borrowBook(book);
-    return "Mượn sách thành công! Hạn trả: " + dueDate;
+    } finally {
+    }
     }
 
     public String returnBook(int memberId, int bookId) {
-    for (BorrowRecord record : borrowRecords) {
-        if (record.getBook().getId() == bookId
-            && record.getMember().getId() == memberId
-            && !record.isReturned()) {
+    try {
+        for (BorrowRecord record : borrowRecords) {
+            if (record.getBook().getId() == bookId
+                && record.getMember().getId() == memberId
+                && !record.isReturned()) {
 
-            record.setReturned(new Date());
-            record.getMember().returnBook(record.getBook());
+                record.setReturned(new Date());
+                record.getMember().returnBook(record.getBook());
 
-            Date now = record.getReturnDate();
-            if (now.after(record.getDueDate())) {
-                long diffMs = now.getTime() - record.getDueDate().getTime();
-                long diffDays = diffMs / (1000 * 60 * 60 * 24);
-                double fine = diffDays * 5000;
-                return "Trả sách thành công. Bạn đã trả trễ " + diffDays + " ngày. Phí phạt: " + fine + " VND.";
-            } else {
-                return "Trả sách thành công. Bạn không bị phạt!";
+                Date now = record.getReturnDate();
+                if (now.after(record.getDueDate())) {
+                    long diffMs = now.getTime() - record.getDueDate().getTime();
+                    long diffDays = diffMs / (1000 * 60 * 60 * 24);
+                    double fine = diffDays * 5000;
+                    return "Trả sách thành công. Bạn đã trả trễ " + diffDays + " ngày. Phí phạt: " + fine + " VND.";
+                } else {
+                    return "Trả sách thành công. Bạn không bị phạt!";
+                }
             }
         }
+        return "Không tìm thấy giao dịch mượn sách để trả!";
+    } catch (Exception e) {
+        e.printStackTrace();
+        return "Không thể trả sách";
+    } finally {
     }
-    return "Không tìm thấy giao dịch mượn sách để trả!";
     }
 
     public void addBook(Book book) {
-        books.add(book);
+        try {
+            books.add(book);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
     }
     public Book findBookById(int bookId) {
-        for (Book book : books) {
-            if (book.getId() == bookId) {
-                return book;
+        try {
+            for (Book book : books) {
+                if (book.getId() == bookId) {
+                    return book;
+                }
             }
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
         }
-        return null;
     }
 
     public void addMember(Member member) {
-        members.add(member);
+        try {
+            members.add(member);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
     }
     public Member findMemberById(int memberId) {
-        for (Member member : members) {
-            if (member.getId() == memberId) {
-                return member;
+        try {
+            for (Member member : members) {
+                if (member.getId() == memberId) {
+                    return member;
+                }
             }
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
         }
-        return null;
     }
 
     public List<Book> getBooks() {
@@ -106,11 +140,16 @@ public class Library {
     return borrowRecords;
     }
     public void displayAvailableBooks() {
-        System.out.println("Available Books:");
-        for (Book book : books) {
-            if (book.isAvailable()) {
-                System.out.println(book.getId() + " - " + book.getTitle() + " by " + book.getAuthor());
+        try {
+            System.out.println("Available Books:");
+            for (Book book : books) {
+                if (book.isAvailable()) {
+                    System.out.println(book.getId() + " - " + book.getTitle() + " by " + book.getAuthor());
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
         }
     }
 }

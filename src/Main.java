@@ -5,6 +5,7 @@ import models.Library;
 
 public class Main {
     public static void main(String[] args) {
+        try {
 
         GenericRepository<Book> bookRepo = new GenericRepository<>(Book::getId);
         bookRepo.create(new Book(1, "Clean Code", "Robert C. Martin"));
@@ -27,5 +28,9 @@ public class Main {
             System.out.println("Library: " + l.getId() + " - " + l.getName());
         }
         TestReturnBook.main(args);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
     }
 }
