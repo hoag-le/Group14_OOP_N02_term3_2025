@@ -17,7 +17,6 @@ public class LibraryNotifier {
     @GetMapping("/canhbao")
     public String hienThiCanhBao(Model model) {
         try {
-            // Giả sử bạn có sẵn danh sách phiếu mượn (có thể là lấy từ service hoặc hard-code)
             List<PhieuMuon> danhSach = List.of(
                 new PhieuMuon("PM001", "Nguyen Van A", LocalDate.of(2025, 6, 21)),
                 new PhieuMuon("PM002", "Tran Thi B", LocalDate.of(2025, 6, 25)),

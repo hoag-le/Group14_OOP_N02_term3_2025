@@ -16,6 +16,10 @@ public class Book {
         this.isAvailable = true;
         this.dueDate = dueDate; // Gán ngày hết hạn khi tạo sách
     }
+
+    public Book(int id, String title, String author) {
+        this(id, title, author, LocalDate.now());
+    }
     public int getId() {
         return id;
     }

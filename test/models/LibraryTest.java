@@ -1,8 +1,8 @@
 package test.models;
 
-import models.Book;
-import models.Library;
-import models.Member;
+import com.example.servingwebcontent.models.Book;
+import com.example.servingwebcontent.models.Library;
+import com.example.servingwebcontent.models.Member;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

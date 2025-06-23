@@ -1,7 +1,7 @@
 import repository.GenericRepository;
-import models.Book;
-import models.Member;
-import models.Library;
+import com.example.servingwebcontent.models.Book;
+import com.example.servingwebcontent.models.Member;
+import com.example.servingwebcontent.models.Library;
 
 public class Main {
     public static void main(String[] args) {

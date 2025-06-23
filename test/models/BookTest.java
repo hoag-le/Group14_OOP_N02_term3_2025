@@ -1,6 +1,6 @@
 package test.models;
 
-import models.Book;
+import com.example.servingwebcontent.models.Book;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
