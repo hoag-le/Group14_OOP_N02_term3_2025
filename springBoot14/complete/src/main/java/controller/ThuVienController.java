@@ -41,7 +41,8 @@ public class ThuVienController {
     private List<PhieuMuon> layDanhSachPhieuMuon() {
         return List.of(
             new PhieuMuon("PM001", "Vũ", LocalDate.now().plusDays(2)),
-            new PhieuMuon("PM002", "An", LocalDate.now().plusDays(6))
+            new PhieuMuon("PM002", "Hoàng", LocalDate.now().plusDays(6)),
+            new PhieuMuon("PM002", "Quân", LocalDate.now().plusDays(4)),
         );
     }
 }

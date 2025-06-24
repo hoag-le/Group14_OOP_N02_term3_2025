@@ -16,7 +16,7 @@ public class ThuVienService {
             e.printStackTrace();
             return false;
         } finally {
-            System.out.println("✅ Đã kiểm tra hạn trả cho phiếu mượn: " + phieuMuon.getMaPhieu());
+            System.out.println("Đã kiểm tra hạn trả cho phiếu mượn: " + phieuMuon.getMaPhieu());
         }
     }
 }
