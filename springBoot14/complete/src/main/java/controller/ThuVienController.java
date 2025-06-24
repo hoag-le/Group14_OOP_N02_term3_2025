@@ -21,25 +21,23 @@ public class ThuVienController {
     @GetMapping("/canh-bao")
     public String hienThiPhieuMuonGanHetHan(Model model) {
         try {
-            List<PhieuMuon> danhSach = layDanhSachPhieuMuon(); // từ DB hoặc fake data
-
+            List<PhieuMuon> danhSach = layDanhSachPhieuMuon();
             int soNgayCanhBao = 3;
             List<PhieuMuon> phieuMuonGanHetHan = danhSach.stream()
                 .filter(pm -> thuVienService.kiemTraSachGanDenHanTra(pm, soNgayCanhBao))
                 .collect(Collectors.toList());
 
             model.addAttribute("danhSachCanhBao", phieuMuonGanHetHan);
-            return "canhbao"; // Trả về file canhbao.html (View)
+            return "canhbao";
         } catch (Exception e) {
-            e.printStackTrace(); // In lỗi ra log
+            e.printStackTrace();
             model.addAttribute("error", "Đã xảy ra lỗi khi xử lý dữ liệu.");
-            return "error"; // Trả về trang báo lỗi nếu có (có thể tạo error.html)
+            return "error";
         } finally {
-            System.out.println("Đã chạy xong hàm hienThiPhieuMuonGanHetHan"); // Dọn dẹp/logging nếu cần
+            System.out.println("Đã chạy xong hàm hienThiPhieuMuonGanHetHan");
         }
     }
 
-    // Giả lập dữ liệu (hoặc gọi từ DB)
     private List<PhieuMuon> layDanhSachPhieuMuon() {
         return List.of(
             new PhieuMuon("PM001", "Vũ", LocalDate.now().plusDays(2)),

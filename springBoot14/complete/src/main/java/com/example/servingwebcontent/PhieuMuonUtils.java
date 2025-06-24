@@ -12,7 +12,7 @@ public class PhieuMuonUtils {
             return khoangCach > 0 && khoangCach <= soNgayCanhBao;
         } catch (Exception e) {
             e.printStackTrace();
-            return false; // Xử lý an toàn: nếu lỗi thì coi như không gần đến hạn
+            return false;
         } finally {
             System.out.println("Đã kiểm tra hạn trả sách.");
         }

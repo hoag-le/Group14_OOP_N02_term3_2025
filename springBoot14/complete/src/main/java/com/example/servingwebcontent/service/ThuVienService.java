@@ -13,8 +13,8 @@ public class ThuVienService {
             LocalDate hanCanhBao = today.plusDays(soNgayCanhBao);
             return !phieuMuon.getNgayHetHan().isBefore(today) && !phieuMuon.getNgayHetHan().isAfter(hanCanhBao);
         } catch (Exception e) {
-            e.printStackTrace(); // Ghi log lỗi nếu có
-            return false; // Nếu xảy ra lỗi thì coi như không gần đến hạn
+            e.printStackTrace();
+            return false;
         } finally {
             System.out.println("✅ Đã kiểm tra hạn trả cho phiếu mượn: " + phieuMuon.getMaPhieu());
         }
