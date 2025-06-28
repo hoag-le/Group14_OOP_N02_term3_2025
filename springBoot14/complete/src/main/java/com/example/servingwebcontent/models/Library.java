@@ -2,9 +2,6 @@ package com.example.servingwebcontent.models;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.servingwebcontent.BorrowRecord;
-
 import java.util.Date;
 import java.util.Calendar;
 

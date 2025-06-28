@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Borrowed Books</title>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    <h2>Danh sách sách đang được mượn</h2>
+    <table border="1">
+        <tr>
+            <th>Mã sách</th>
+            <th>Tên sách</th>
+            <th>Người mượn</th>
+        </tr>
+        <tr th:each="record : ${borrowed}">
+            <td th:text="${record.book.id}"></td>
+            <td th:text="${record.book.title}"></td>
+            <td th:text="${record.member.name}"></td>
+        </tr>
+    </table>
+</body>
+</html>

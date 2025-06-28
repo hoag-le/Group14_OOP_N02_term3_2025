@@ -5,12 +5,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.servingwebcontent.PhieuMuon;
-import com.example.servingwebcontent.PhieuMuonUtils;
-import com.example.servingwebcontent.BorrowRecord;
 import com.example.servingwebcontent.models.Book;
+import com.example.servingwebcontent.models.BorrowRecord;
 import com.example.servingwebcontent.models.Library;
 import com.example.servingwebcontent.models.Member;
+import com.example.servingwebcontent.models.PhieuMuon;
+import com.example.servingwebcontent.models.PhieuMuonUtils;
 import com.example.servingwebcontent.service.LibraryPrinter;
 
 import java.time.LocalDate;
@@ -91,5 +91,9 @@ public class LibraryNotifier {
         } finally {
             System.out.println("hienThiSachDangMuon executed");
         }
+    }
+
+    public void notifyUser(Book book) {
+        throw new UnsupportedOperationException("Unimplemented method 'notifyUser'");
     }
 }

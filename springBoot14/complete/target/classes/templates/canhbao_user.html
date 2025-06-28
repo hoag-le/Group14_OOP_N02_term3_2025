@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thông báo trả sách</title>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    <h2>Thông báo cho <span th:text="${tenNguoiMuon}"></span></h2>
+    <p>Sách bạn mượn sắp đến hạn trả. Vui lòng kiểm tra danh sách dưới đây:</p>
+    <table border="1">
+        <tr>
+            <th>Mã phiếu</th>
+            <th>Tên người mượn</th>
+            <th>Ngày hết hạn</th>
+        </tr>
+        <tr th:each="pm : ${dsCanhBao}">
+            <td th:text="${pm.maPhieu}"></td>
+            <td th:text="${pm.tenNguoiMuon}"></td>
+            <td th:text="${pm.ngayHetHan}"></td>
+        </tr>
+    </table>
+</body>
+</html>
