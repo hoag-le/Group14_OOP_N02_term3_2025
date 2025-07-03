@@ -3,16 +3,16 @@ package com.example.servingwebcontent.models;
 import com.example.servingwebcontent.models.Book;
 import com.example.servingwebcontent.models.Library;
 import com.example.servingwebcontent.models.Member;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LibraryTest {
     private Library library;
     private Book book;
     private Member member;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         try {
             library = new Library(1, "Central Library");

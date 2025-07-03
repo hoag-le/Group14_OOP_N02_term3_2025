@@ -23,9 +23,15 @@ public class BookController {
     }
 
     @PostMapping
-    public String addBook(@RequestBody Book book) {
-        bookDao.save(book);
-        return "ok";
+    public ResponseEntity<String> addBook(@RequestBody Book book) {
+        try {
+            bookDao.save(book);
+            return ResponseEntity.ok("ok");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("database error");
+        }
     }
 
     @PutMapping("/{id}")

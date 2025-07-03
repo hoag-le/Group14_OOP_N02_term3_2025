@@ -23,20 +23,29 @@ public class MemberDao {
                 result.add(member);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Database error", e);
         }
         return result;
     }
 
     public void save(Member member) {
+        String checkSql = "SELECT id FROM members WHERE id = ?";
         String sql = "INSERT INTO members(id, name) VALUES (?, ?)";
         try (Connection conn = AivenDatabaseConfig.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, member.getId());
-            ps.setString(2, member.getName());
-            ps.executeUpdate();
+             PreparedStatement check = conn.prepareStatement(checkSql)) {
+            check.setInt(1, member.getId());
+            try (ResultSet rs = check.executeQuery()) {
+                if (rs.next()) {
+                    throw new IllegalArgumentException("Member ID already exists");
+                }
+            }
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, member.getId());
+                ps.setString(2, member.getName());
+                ps.executeUpdate();
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Database error", e);
         }
     }
 
@@ -48,8 +57,7 @@ public class MemberDao {
             ps.setInt(2, member.getId());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+            throw new RuntimeException("Database error", e);
         }
     }
 
@@ -60,8 +68,7 @@ public class MemberDao {
             ps.setInt(1, id);
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+            throw new RuntimeException("Database error", e);
         }
     }
 }

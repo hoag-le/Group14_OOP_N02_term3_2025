@@ -23,21 +23,30 @@ public class BookDao {
                 result.add(book);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Database error", e);
         }
         return result;
     }
 
     public void save(Book book) {
+        String checkSql = "SELECT id FROM books WHERE id = ?";
         String sql = "INSERT INTO books(id, title, author) VALUES (?, ?, ?)";
         try (Connection conn = AivenDatabaseConfig.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, book.getId());
-            ps.setString(2, book.getTitle());
-            ps.setString(3, book.getAuthor());
-            ps.executeUpdate();
+             PreparedStatement check = conn.prepareStatement(checkSql)) {
+            check.setInt(1, book.getId());
+            try (ResultSet rs = check.executeQuery()) {
+                if (rs.next()) {
+                    throw new IllegalArgumentException("Book ID already exists");
+                }
+            }
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, book.getId());
+                ps.setString(2, book.getTitle());
+                ps.setString(3, book.getAuthor());
+                ps.executeUpdate();
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Database error", e);
         }
     }
 
@@ -50,8 +59,7 @@ public class BookDao {
             ps.setInt(3, book.getId());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+            throw new RuntimeException("Database error", e);
         }
     }
 
@@ -62,8 +70,7 @@ public class BookDao {
             ps.setInt(1, id);
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+            throw new RuntimeException("Database error", e);
         }
     }
 }

@@ -4,8 +4,8 @@ package com.example.servingwebcontent.models;
 
 import com.example.servingwebcontent.models.Book;
 import com.example.servingwebcontent.models.Member;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MemberTest {
 

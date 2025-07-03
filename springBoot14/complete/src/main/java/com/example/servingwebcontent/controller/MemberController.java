@@ -23,9 +23,15 @@ public class MemberController {
     }
 
     @PostMapping
-    public String addMember(@RequestBody Member member) {
-        memberDao.save(member);
-        return "ok";
+    public ResponseEntity<String> addMember(@RequestBody Member member) {
+        try {
+            memberDao.save(member);
+            return ResponseEntity.ok("ok");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("database error");
+        }
     }
 
     @PutMapping("/{id}")

@@ -29,6 +29,9 @@ public class Library {
 
     public String borrowBook(int memberId, int bookId, int borrowDays) {
     try {
+        if (borrowDays <= 0) {
+            return "Số ngày mượn không hợp lệ";
+        }
         Member member = findMemberById(memberId);
         Book book = findBookById(bookId);
         if (member == null || book == null || !book.isAvailable()) {
@@ -126,7 +129,7 @@ public class Library {
         } finally {
         }
     }
-    
+
     public boolean updateBook(Book updatedBook) {
         Book existing = findBookById(updatedBook.getId());
         if (existing != null) {
