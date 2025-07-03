@@ -40,4 +40,30 @@ public class BookDao {
             e.printStackTrace();
         }
     }
+
+    public boolean update(Book book) {
+        String sql = "UPDATE books SET title = ?, author = ? WHERE id = ?";
+        try (Connection conn = AivenDatabaseConfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, book.getTitle());
+            ps.setString(2, book.getAuthor());
+            ps.setInt(3, book.getId());
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean delete(int id) {
+        String sql = "DELETE FROM books WHERE id = ?";
+        try (Connection conn = AivenDatabaseConfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

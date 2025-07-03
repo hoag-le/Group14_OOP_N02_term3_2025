@@ -14,12 +14,14 @@ Clone repository:
 git clone [địa-chỉ-repo]
 ```
 ## Các Tính Năng Đã Triển Khai
-Quản lý sách:  
-- Thêm/xem sách  
-- Mượn/trả sách  
+Quản lý sách:
+- Thêm/xem sách
+- Sửa/xóa sách qua API REST
+- Mượn/trả sách
 
-Quản lý thành viên:  
-- Theo dõi sách đang mượn  
+Quản lý thành viên:
+- Theo dõi sách đang mượn
+- Sửa/xóa thông tin thành viên
 
 Kiểm thử:  
 - 9 test cases cho các nghiệp vụ cơ bản

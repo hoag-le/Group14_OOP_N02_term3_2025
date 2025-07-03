@@ -3,11 +3,9 @@ package com.example.servingwebcontent.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.servingwebcontent.database.BookDao;
 import com.example.servingwebcontent.models.Book;
@@ -28,5 +26,26 @@ public class BookController {
     public String addBook(@RequestBody Book book) {
         bookDao.save(book);
         return "ok";
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateBook(@PathVariable int id, @RequestBody Book book) {
+        book.setId(id);
+        boolean updated = bookDao.update(book);
+        if (updated) {
+            return ResponseEntity.ok("ok");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("not found");
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteBook(@PathVariable int id) {
+        boolean deleted = bookDao.delete(id);
+        if (deleted) {
+            return ResponseEntity.ok("ok");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("not found");
+        }
     }
 }

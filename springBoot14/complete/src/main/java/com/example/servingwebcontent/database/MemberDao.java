@@ -39,4 +39,29 @@ public class MemberDao {
             e.printStackTrace();
         }
     }
+
+    public boolean update(Member member) {
+        String sql = "UPDATE members SET name = ? WHERE id = ?";
+        try (Connection conn = AivenDatabaseConfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, member.getName());
+            ps.setInt(2, member.getId());
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean delete(int id) {
+        String sql = "DELETE FROM members WHERE id = ?";
+        try (Connection conn = AivenDatabaseConfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

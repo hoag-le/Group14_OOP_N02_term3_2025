@@ -126,6 +126,44 @@ public class Library {
         } finally {
         }
     }
+    
+    public boolean updateBook(Book updatedBook) {
+        Book existing = findBookById(updatedBook.getId());
+        if (existing != null) {
+            existing.setTitle(updatedBook.getTitle());
+            existing.setAuthor(updatedBook.getAuthor());
+            existing.setDueDate(updatedBook.getDueDate());
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteBook(int bookId) {
+        Book existing = findBookById(bookId);
+        if (existing != null) {
+            books.remove(existing);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean updateMember(Member updatedMember) {
+        Member existing = findMemberById(updatedMember.getId());
+        if (existing != null) {
+            existing.setName(updatedMember.getName());
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteMember(int memberId) {
+        Member existing = findMemberById(memberId);
+        if (existing != null) {
+            members.remove(existing);
+            return true;
+        }
+        return false;
+    }
 
     public List<Book> getBooks() {
         return this.books;
