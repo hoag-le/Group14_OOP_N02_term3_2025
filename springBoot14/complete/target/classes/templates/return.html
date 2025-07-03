@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trả sách</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Library</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/books">Quản lý Sách</a></li>
+        <li class="nav-item"><a class="nav-link" href="/members">Quản lý Thành viên</a></li>
+        <li class="nav-item"><a class="nav-link" href="/borrow">Mượn sách</a></li>
+        <li class="nav-item"><a class="nav-link" href="/return">Trả sách</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+    <div th:if="${message}" class="alert alert-info" th:text="${message}"></div>
+    <h2>Danh sách Mượn</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr><th>Sách</th><th>Thành viên</th><th>Hạn trả</th><th>Hành động</th></tr>
+        </thead>
+        <tbody>
+            <tr th:each="r : ${records}" th:if="${!r.returned}">
+                <td th:text="${r.book.title}"></td>
+                <td th:text="${r.member.name}"></td>
+                <td th:text="${#dates.format(r.dueDate, 'yyyy-MM-dd')}"></td>
+                <td>
+                    <form th:action="@{/return}" method="post">
+                        <input type="hidden" name="memberId" th:value="${r.member.id}">
+                        <input type="hidden" name="bookId" th:value="${r.book.id}">
+                        <button type="submit" class="btn btn-sm btn-primary">Trả</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

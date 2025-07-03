@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý Sách</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Library</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/books">Quản lý Sách</a></li>
+        <li class="nav-item"><a class="nav-link" href="/members">Quản lý Thành viên</a></li>
+        <li class="nav-item"><a class="nav-link" href="/borrow">Mượn sách</a></li>
+        <li class="nav-item"><a class="nav-link" href="/return">Trả sách</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+    <div th:if="${message}" class="alert alert-info" th:text="${message}"></div>
+    <h2>Danh sách Sách</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr><th>ID</th><th>Tiêu đề</th><th>Tác giả</th></tr>
+        </thead>
+        <tbody>
+            <tr th:each="b : ${books}">
+                <td th:text="${b.id}"></td>
+                <td th:text="${b.title}"></td>
+                <td th:text="${b.author}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Thêm Sách</h3>
+    <form th:action="@{/books/add}" method="post">
+        <div class="mb-3">
+            <label class="form-label">ID</label>
+            <input type="number" class="form-control" name="id" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tiêu đề</label>
+            <input type="text" class="form-control" name="title" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tác giả</label>
+            <input type="text" class="form-control" name="author" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Thêm</button>
+    </form>
+</div>
+</body>
+</html>
