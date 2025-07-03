@@ -12,6 +12,8 @@ import com.example.servingwebcontent.models.Member;
 import com.example.servingwebcontent.models.PhieuMuon;
 import com.example.servingwebcontent.models.PhieuMuonUtils;
 import com.example.servingwebcontent.service.LibraryPrinter;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.example.servingwebcontent.service.LibraryService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,6 +21,9 @@ import java.util.stream.Collectors;
 
 @Controller
 public class LibraryNotifier {
+    
+    @Autowired
+    private LibraryService libraryService;
 
     @GetMapping("/canhbao")
     public String hienThiCanhBao(Model model) {
@@ -32,6 +37,7 @@ public class LibraryNotifier {
             int soNgayCanhBao = 5;
 
             List<PhieuMuon> danhSachCanhBao = danhSach.stream()
+                .filter(p -> libraryService.kiemTraSachGanDenHanTra(p, soNgayCanhBao))
                 .filter(p -> PhieuMuonUtils.kiemTraSachGanDenHanTra(p, soNgayCanhBao))
                 .collect(Collectors.toList());
 
@@ -57,6 +63,7 @@ public class LibraryNotifier {
             int soNgayCanhBao = 5;
 
             List<PhieuMuon> danhSachCanhBao = danhSach.stream()
+                .filter(p -> libraryService.kiemTraSachGanDenHanTra(p, soNgayCanhBao))
                 .filter(p -> p.getTenNguoiMuon().equalsIgnoreCase(tenNguoiMuon))
                 .filter(p -> PhieuMuonUtils.kiemTraSachGanDenHanTra(p, soNgayCanhBao))
                 .collect(Collectors.toList());

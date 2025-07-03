@@ -16,7 +16,7 @@ Link: [https://github.com/hoag-le/Group14_OOP_N02_term3_2025](https://github.com
 
 ## Giới thiệu cấu trúc dự án
 - Thư mục `springBoot14/complete/src/main/java` chứa các lớp `Book`, `Member`, `Library`, `BorrowRecord`, `PhieuMuon*`.
-- Thư mục `src/repository` có các lớp `CrudRepository` và `GenericRepository`.
+- Thư mục `src/repository` chứa lớp `CrudRepository`.
 - Thư mục `test/models` chứa các test JUnit.
 
 ## Đối Tượng:

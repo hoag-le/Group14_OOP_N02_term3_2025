@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.example.servingwebcontent.models.PhieuMuon;
 
 @Service
-public class ThuVienService {
+public class LibraryService {
 
     public boolean kiemTraSachGanDenHanTra(PhieuMuon phieuMuon, int soNgayCanhBao) {
         try {
