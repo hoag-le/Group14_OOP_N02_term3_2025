@@ -32,7 +32,7 @@ public class LibraryManager {
 
         Member member = memberDao.read(memberId);
         Book book = bookDao.read(bookId);
-        if (member == null || book == null || isBookBorrowed(bookId)) {
+        if (member == null || book == null || !book.isAvailable() || isBookBorrowed(bookId)) {
             return "Không thể mượn sách";
         }
 
@@ -46,6 +46,8 @@ public class LibraryManager {
         borrowRecords.add(record);
 
         member.borrowBook(book);
+        bookDao.updateAvailability(bookId, false);
+        book.setAvailable(false);
         return "Mượn sách thành công! Hạn trả: " + dueDate;
     }
 
@@ -66,6 +68,8 @@ public class LibraryManager {
 
                 record.setReturned(new Date());
                 record.getMember().returnBook(record.getBook());
+                bookDao.updateAvailability(bookId, true);
+                record.getBook().setAvailable(true);
 
                 Date now = record.getReturnDate();
                 if (now.after(record.getDueDate())) {

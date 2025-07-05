@@ -14,16 +14,23 @@ public class Book {
     private boolean isAvailable;
     private LocalDate dueDate; // Thêm ngày hết hạn
 
-    public Book(int id, String title, String author,LocalDate dueDate) {
+    /**
+     * Full constructor allowing to specify availability.
+     */
+    public Book(int id, String title, String author, boolean isAvailable, LocalDate dueDate) {
         this.id = id;
         this.title = title;
         this.author = author;
-        this.isAvailable = true;
-        this.dueDate = dueDate; // Gán ngày hết hạn khi tạo sách
+        this.isAvailable = isAvailable;
+        this.dueDate = dueDate;
+    }
+
+    public Book(int id, String title, String author, LocalDate dueDate) {
+        this(id, title, author, true, dueDate);
     }
 
     public Book(int id, String title, String author) {
-        this(id, title, author, LocalDate.now());
+        this(id, title, author, true, LocalDate.now());
     }
     public int getId() {
         return id;
@@ -48,6 +55,10 @@ public class Book {
     }
     public boolean isAvailable() {
         return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        this.isAvailable = available;
     }
 
     public LocalDate getDueDate() {

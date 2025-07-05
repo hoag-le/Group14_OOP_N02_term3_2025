@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS books (
+    id INT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    available BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE IF NOT EXISTS members (
+    id INT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
