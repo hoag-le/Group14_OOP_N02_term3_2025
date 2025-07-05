@@ -14,8 +14,6 @@ import com.example.servingwebcontent.models.Member;
 import com.example.servingwebcontent.models.BorrowTicket;
 import com.example.servingwebcontent.models.BorrowTicketUtils;
 import com.example.servingwebcontent.service.LibraryPrinter;
-import org.springframework.beans.factory.annotation.Autowired;
-import com.example.servingwebcontent.service.LibraryService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -25,9 +23,6 @@ import java.util.stream.Collectors;
 public class LibraryNotifier {
 
     private static final Logger logger = LoggerFactory.getLogger(LibraryNotifier.class);
-    
-    @Autowired
-    private LibraryService libraryService;
 
     @GetMapping("/warning")
     public String showWarning(Model model) {
@@ -41,7 +36,6 @@ public class LibraryNotifier {
             int warningDays = 5;
 
             List<BorrowTicket> toWarn = tickets.stream()
-                .filter(p -> libraryService.isBookNearDueDate(p, warningDays))
                 .filter(p -> BorrowTicketUtils.isBookNearDueDate(p, warningDays))
                 .collect(Collectors.toList());
 
@@ -65,7 +59,6 @@ public class LibraryNotifier {
             int warningDays = 5;
 
             List<BorrowTicket> toWarn = tickets.stream()
-                .filter(p -> libraryService.isBookNearDueDate(p, warningDays))
                 .filter(p -> p.getBorrowerName().equalsIgnoreCase(borrowerName))
                 .filter(p -> BorrowTicketUtils.isBookNearDueDate(p, warningDays))
                 .collect(Collectors.toList());

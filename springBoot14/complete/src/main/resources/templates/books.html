@@ -15,6 +15,8 @@
         <li class="nav-item"><a class="nav-link" href="/members">Quản lý Thành viên</a></li>
         <li class="nav-item"><a class="nav-link" href="/borrow">Mượn sách</a></li>
         <li class="nav-item"><a class="nav-link" href="/return">Trả sách</a></li>
+        <li class="nav-item"><a class="nav-link" href="/borrowed">Đang mượn</a></li>
+        <li class="nav-item"><a class="nav-link" href="/warning">Cảnh báo</a></li>
       </ul>
     </div>
   </div>
@@ -49,6 +51,32 @@
             <input type="text" class="form-control" name="author" required>
         </div>
         <button type="submit" class="btn btn-primary">Thêm</button>
+    </form>
+
+    <h3 class="mt-4">Cập nhật Sách</h3>
+    <form th:action="@{/books/update}" method="post">
+        <div class="mb-3">
+            <label class="form-label">ID</label>
+            <input type="number" class="form-control" name="id" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tiêu đề</label>
+            <input type="text" class="form-control" name="title" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tác giả</label>
+            <input type="text" class="form-control" name="author" required>
+        </div>
+        <button type="submit" class="btn btn-warning">Cập nhật</button>
+    </form>
+
+    <h3 class="mt-4">Xóa Sách</h3>
+    <form th:action="@{/books/delete}" method="post">
+        <div class="mb-3">
+            <label class="form-label">ID</label>
+            <input type="number" class="form-control" name="id" required>
+        </div>
+        <button type="submit" class="btn btn-danger">Xóa</button>
     </form>
 </div>
 </body>

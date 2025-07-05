@@ -50,6 +50,36 @@ public class PageController {
         }
     }
 
+    @PostMapping("/books/update")
+    public String updateBook(@RequestParam int id,
+                             @RequestParam String title,
+                             @RequestParam String author,
+                             Model model) {
+        try {
+            com.example.servingwebcontent.models.Book b =
+                    new com.example.servingwebcontent.models.Book(id, title, author);
+            bookDao.update(b);
+            return "redirect:/books?success";
+        } catch (Exception e) {
+            model.addAttribute("books", bookDao.findAll());
+            model.addAttribute("message", e.getMessage());
+            return "books";
+        }
+    }
+
+    @PostMapping("/books/delete")
+    public String deleteBook(@RequestParam int id,
+                             Model model) {
+        try {
+            bookDao.delete(id);
+            return "redirect:/books?success";
+        } catch (Exception e) {
+            model.addAttribute("books", bookDao.findAll());
+            model.addAttribute("message", e.getMessage());
+            return "books";
+        }
+    }
+
     @GetMapping("/members")
     public String members(@RequestParam(value = "success", required = false) String success,
                           Model model) {
@@ -64,6 +94,35 @@ public class PageController {
                             Model model) {
         try {
             memberDao.save(new com.example.servingwebcontent.models.Member(id, name));
+            return "redirect:/members?success";
+        } catch (Exception e) {
+            model.addAttribute("members", memberDao.findAll());
+            model.addAttribute("message", e.getMessage());
+            return "members";
+        }
+    }
+
+    @PostMapping("/members/update")
+    public String updateMember(@RequestParam int id,
+                               @RequestParam String name,
+                               Model model) {
+        try {
+            com.example.servingwebcontent.models.Member m =
+                    new com.example.servingwebcontent.models.Member(id, name);
+            memberDao.update(m);
+            return "redirect:/members?success";
+        } catch (Exception e) {
+            model.addAttribute("members", memberDao.findAll());
+            model.addAttribute("message", e.getMessage());
+            return "members";
+        }
+    }
+
+    @PostMapping("/members/delete")
+    public String deleteMember(@RequestParam int id,
+                               Model model) {
+        try {
+            memberDao.delete(id);
             return "redirect:/members?success";
         } catch (Exception e) {
             model.addAttribute("members", memberDao.findAll());
@@ -105,5 +164,32 @@ public class PageController {
         model.addAttribute("message", msg);
         model.addAttribute("records", libraryManager.getBorrowRecords());
         return "return";
+    }
+
+    @GetMapping("/borrowed")
+    public String borrowedBooks(Model model) {
+        model.addAttribute("borrowed", libraryManager.getBorrowRecords().stream()
+                .filter(r -> !r.isReturned())
+                .toList());
+        return "borrowed";
+    }
+
+    @GetMapping("/warning")
+    public String warningPage(@RequestParam(value = "days", required = false, defaultValue = "3") int days,
+                              Model model) {
+        java.time.LocalDate today = java.time.LocalDate.now();
+        java.util.List<com.example.servingwebcontent.models.BorrowRecord> warning =
+                libraryManager.getBorrowRecords().stream()
+                        .filter(r -> !r.isReturned())
+                        .filter(r -> {
+                            java.time.LocalDate due = r.getDueDate().toInstant()
+                                    .atZone(java.time.ZoneId.systemDefault())
+                                    .toLocalDate();
+                            long diff = java.time.temporal.ChronoUnit.DAYS.between(today, due);
+                            return diff > 0 && diff <= days;
+                        })
+                        .toList();
+        model.addAttribute("warningRecords", warning);
+        return "canhbao";
     }
 }

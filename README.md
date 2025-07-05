@@ -15,7 +15,7 @@ Link: [https://github.com/hoag-le/Group14_OOP_N02_term3_2025](https://github.com
 - Sử dụng `./mvnw spring-boot:run` (hoặc `./gradlew bootRun`) để khởi động ứng dụng Spring Boot.
 
 ## Giới thiệu cấu trúc dự án
-- Thư mục `springBoot14/complete/src/main/java` chứa các lớp `Book`, `Member`, `Library`, `BorrowRecord`, `PhieuMuon*`.
+- Thư mục `springBoot14/complete/src/main/java` chứa các lớp `Book`, `Member`, `Library`, `BorrowRecord`, `BorrowTicket*`.
 - Thư mục `src/repository` chứa lớp `CrudRepository`.
 - Thư mục `test/models` chứa các test JUnit.
 
@@ -39,7 +39,7 @@ Link: [https://github.com/hoag-le/Group14_OOP_N02_term3_2025](https://github.com
     +   Ghi nhận việc Thành viên trả Sách (cập nhật Phiếu Mượn).
     +   Liệt kê các Sách đang được mượn, Sách đã trả, Sách quá hạn (nếu có).
     +   Tính phí trễ hạn khi trả sách dựa trên `BorrowRecord`.
-    +   Cảnh báo sách sắp đến hạn trả thông qua `PhieuMuonUtils`.
+    +   Cảnh báo sách sắp đến hạn trả thông qua `BorrowTicketUtils`.
 -   **Dữ liệu được lưu trữ xuống file nhị phân:**
     +   Cần tạo các lớp liên quan đến **Sách (Book)**, **Thành viên (Member)**, và **Phiếu Mượn/Trả (BorrowingRecord/Loan)** để đọc, ghi dữ liệu xuống một hay nhiều file nhị phân. Lớp `Library` sẽ quản lý việc này.
 -   **Khi làm việc với dữ liệu trong bộ nhớ:** Dữ liệu cần được lưu trữ dưới dạng các Collection tùy chọn như `ArrayList`, `LinkedList`, `HashMap`, `HashSet`, ... để quản lý danh sách Sách, Thành viên, và các giao dịch mượn/trả.
@@ -122,7 +122,7 @@ create_library()
 
 * Tham số đầu vào:
 
-* phieuMuon: Đối tượng PhieuMuon
+* ticket: Đối tượng BorrowTicket
 
 * soNgayCanhBao: số nguyên – khoảng cảnh báo (ví dụ: 3 ngày)
 
@@ -138,7 +138,7 @@ create_library()
 
 * Tham số đầu vào:
 
-* danhSachPhieuMuon: Danh sách các phiếu mượn
+* danhSachBorrowTicket: Danh sách các BorrowTicket
 
 * soNgayCanhBao: số nguyên – khoảng cảnh báo (ví dụ: 3 ngày)
 
@@ -154,7 +154,7 @@ create_library()
 
 * Tham số đầu vào:
 
-* danhSachPhieuMuon: Danh sách các phiếu mượn
+* danhSachBorrowTicket: Danh sách các BorrowTicket
 
 * maBanDoc: Mã số của bạn đọc cần tra cứu
 
