@@ -2,8 +2,6 @@ package com.example.servingwebcontent.models;
 
 
 
-import com.example.servingwebcontent.models.Book;
-import com.example.servingwebcontent.models.Member;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,57 +9,36 @@ public class MemberTest {
 
     @Test
     public void testBorrowBook() {
-        try {
-            Member member = new Member(1, "Vu");
-            Book book = new Book(4, "Java Concurrency", "Brian Goetz");
+        Member member = new Member(1, "Vu");
+        Book book = new Book(4, "Java Concurrency", "Brian Goetz");
 
-            member.borrowBook(book);
-            assertEquals(1, member.getBorrowedBooks().size());
-            assertFalse(book.isAvailable());
-        } catch (Exception e) {
-            System.out.println("Lỗi trong testBorrowBook: " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            System.out.println("Hoàn thành testBorrowBook");
-        }
+        member.borrowBook(book);
+        assertEquals(1, member.getBorrowedBooks().size());
+        assertFalse(book.isAvailable());
     }
 
     @Test
     public void testReturnBook() {
-        try {
-            Member member = new Member(2, "Quan");
-            Book book = new Book(5, "Refactoring", "Martin Fowler");
+        Member member = new Member(2, "Quan");
+        Book book = new Book(5, "Refactoring", "Martin Fowler");
 
-            member.borrowBook(book);
-            member.returnBook(book);
-            assertEquals(0, member.getBorrowedBooks().size());
-            assertTrue(book.isAvailable());
-        } catch (Exception e) {
-            System.out.println("Lỗi trong testReturnBook: " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            System.out.println("Hoàn thành testReturnBook");
-        }
+        member.borrowBook(book);
+        member.returnBook(book);
+        assertEquals(0, member.getBorrowedBooks().size());
+        assertTrue(book.isAvailable());
     }
 
     @Test
     public void testMultipleBookOperations() {
-        try {
-            Member member = new Member(5, "Test Member");
-            Book book1 = new Book(8, "Book 1", "Author 1");
-            Book book2 = new Book(9, "Book 2", "Author 2");
+        Member member = new Member(5, "Test Member");
+        Book book1 = new Book(8, "Book 1", "Author 1");
+        Book book2 = new Book(9, "Book 2", "Author 2");
 
-            member.borrowBook(book1);
-            member.borrowBook(book2);
-            assertEquals(2, member.getBorrowedBooks().size());
+        member.borrowBook(book1);
+        member.borrowBook(book2);
+        assertEquals(2, member.getBorrowedBooks().size());
 
-            member.returnBook(book1);
-            assertEquals(1, member.getBorrowedBooks().size());
-        } catch (Exception e) {
-            System.out.println("Lỗi trong testMultipleBookOperations: " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            System.out.println("Hoàn thành testMultipleBookOperations");
-        }
+        member.returnBook(book1);
+        assertEquals(1, member.getBorrowedBooks().size());
     }
 }
