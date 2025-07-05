@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.servingwebcontent.models.Book;
 import com.example.servingwebcontent.models.BorrowRecord;
-import com.example.servingwebcontent.models.Library;
-import com.example.servingwebcontent.models.Member;
 import com.example.servingwebcontent.models.BorrowTicket;
-import com.example.servingwebcontent.service.LibraryPrinter;
 import com.example.servingwebcontent.service.LibraryService;
+import com.example.servingwebcontent.service.LibraryManager;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
@@ -27,6 +25,9 @@ public class LibraryNotifier {
 
     @Autowired
     private LibraryService libraryService;
+
+    @Autowired
+    private LibraryManager libraryManager;
 
     @GetMapping("/warning")
     public String showWarning(Model model) {
@@ -79,14 +80,9 @@ public class LibraryNotifier {
     @GetMapping("/borrowed")
     public String showBorrowedBooks(Model model) {
         try {
-            Library library = new Library(1, "Demo Library");
-            Member member = new Member(1, "Nguyen Van A");
-            Book book = new Book(1, "Java OOP", "Tac gia A", LocalDate.now().plusDays(3));
-            library.addBook(book);
-            library.addMember(member);
-            library.borrowBook(1, 1, 3);
-
-            List<BorrowRecord> borrowed = LibraryPrinter.getBorrowedRecords(library);
+            List<BorrowRecord> borrowed = libraryManager.getBorrowRecords().stream()
+                    .filter(r -> !r.isReturned())
+                    .collect(Collectors.toList());
             model.addAttribute("borrowed", borrowed);
             return "borrowed";
         } catch (Exception e) {
