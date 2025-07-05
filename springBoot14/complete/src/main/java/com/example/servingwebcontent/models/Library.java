@@ -3,12 +3,12 @@ package com.example.servingwebcontent.models;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
-import java.util.Calendar;
 import java.util.Map;
 import java.util.HashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.example.servingwebcontent.service.BorrowService;
 
 public class Library {
 
@@ -40,25 +40,9 @@ public class Library {
 
     public String borrowBook(int memberId, int bookId, int borrowDays) {
         try {
-            if (borrowDays <= 0) {
-                return "Số ngày mượn không hợp lệ";
-            }
             Member member = findMemberById(memberId);
             Book book = findBookById(bookId);
-            if (member == null || book == null || !book.isAvailable()) {
-                return "Không thể mượn sách";
-            }
-            Date borrowDate = new Date();
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(borrowDate);
-            cal.add(Calendar.DATE, borrowDays);
-            Date dueDate = cal.getTime();
-
-            BorrowRecord record = new BorrowRecord(book, member, borrowDate, dueDate);
-            borrowRecords.add(record);
-
-            member.borrowBook(book);
-            return "Mượn sách thành công! Hạn trả: " + dueDate;
+            return BorrowService.borrowBook(member, book, borrowDays, borrowRecords, null);
         } catch (Exception e) {
             logger.error("Unable to borrow book", e);
             return "Không thể mượn sách";
@@ -67,26 +51,9 @@ public class Library {
 
 public String returnBook(int memberId, int bookId) {
     try {
-        for (BorrowRecord record : borrowRecords) {
-            if (record.getBook().getId() == bookId
-                && record.getMember().getId() == memberId
-                && !record.isReturned()) {
-
-                record.setReturned(new Date());
-                record.getMember().returnBook(record.getBook());
-
-                Date now = record.getReturnDate();
-                if (now.after(record.getDueDate())) {
-                    long diffMs = now.getTime() - record.getDueDate().getTime();
-                    long diffDays = diffMs / (1000 * 60 * 60 * 24);
-                    double fine = diffDays * 5000;
-                    return "Trả sách thành công. Bạn đã trả trễ " + diffDays + " ngày. Phí phạt: " + fine + " VND.";
-                } else {
-                    return "Trả sách thành công. Bạn không bị phạt!";
-                }
-            }
-        }
-        return "Không tìm thấy giao dịch mượn sách để trả!";
+        Member member = findMemberById(memberId);
+        Book book = findBookById(bookId);
+        return BorrowService.returnBook(member, book, borrowRecords, null);
     } catch (Exception e) {
         logger.error("Unable to return book", e);
         return "Không thể trả sách";
