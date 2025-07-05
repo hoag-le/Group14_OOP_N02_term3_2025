@@ -19,11 +19,13 @@ public class BorrowController {
 
     @PostMapping("/borrow")
     public String borrow(@RequestBody BorrowRequest req) {
-        return libraryManager.borrowBook(req.getMemberId(), req.getBookId(), req.getDays());
+        int libId = req.getLibraryId() == 0 ? 1 : req.getLibraryId();
+        return libraryManager.borrowBook(libId, req.getMemberId(), req.getBookId(), req.getDays());
     }
 
     @PostMapping("/return")
     public String returnBook(@RequestBody ReturnRequest req) {
-        return libraryManager.returnBook(req.getMemberId(), req.getBookId());
+        int libId = req.getLibraryId() == 0 ? 1 : req.getLibraryId();
+        return libraryManager.returnBook(libId, req.getMemberId(), req.getBookId());
     }
 }

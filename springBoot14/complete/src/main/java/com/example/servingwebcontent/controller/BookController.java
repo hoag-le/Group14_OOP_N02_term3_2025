@@ -22,6 +22,11 @@ public class BookController {
         return bookDao.findAll();
     }
 
+    @GetMapping("/search")
+    public List<Book> searchBooks(@RequestParam("q") String query) {
+        return bookDao.search(query);
+    }
+
     @PostMapping
     public ResponseEntity<String> addBook(@RequestBody Book book) {
         try {

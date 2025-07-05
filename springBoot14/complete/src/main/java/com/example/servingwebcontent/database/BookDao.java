@@ -73,4 +73,27 @@ public class BookDao {
             throw new RuntimeException("Database error", e);
         }
     }
+
+    /**
+     * Simple search by title or author containing the provided keyword.
+     */
+    public List<Book> search(String keyword) {
+        List<Book> result = new ArrayList<>();
+        String sql = "SELECT id, title, author FROM books WHERE LOWER(title) LIKE ? OR LOWER(author) LIKE ?";
+        try (Connection conn = AivenDatabaseConfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            String pattern = "%" + keyword.toLowerCase() + "%";
+            ps.setString(1, pattern);
+            ps.setString(2, pattern);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Book book = new Book(rs.getInt("id"), rs.getString("title"), rs.getString("author"));
+                    result.add(book);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Database error", e);
+        }
+        return result;
+    }
 }
