@@ -1,3 +1,6 @@
++5
+-5
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -8,16 +11,16 @@
 <body>
 <div class="container">
     <h2 class="my-3">Danh sách phiếu mượn gần đến hạn trả</h2>
-    <p th:if="${tenNguoiMuon}" th:text="|Bạn đọc: ${tenNguoiMuon}|"></p>
+    <p th:if="${borrowerName}" th:text="|Bạn đọc: ${borrowerName}|"></p>
     <table class="table table-bordered">
         <thead>
         <tr><th>Mã phiếu</th><th>Tên người mượn</th><th>Ngày hết hạn</th></tr>
         </thead>
         <tbody>
-            <tr th:each="pm : ${dsCanhBao}">
-                <td th:text="${pm.maPhieu}"></td>
-                <td th:text="${pm.tenNguoiMuon}"></td>
-                <td th:text="${pm.ngayHetHan}"></td>
+            <tr th:each="pm : ${warningTickets}">
+                <td th:text="${pm.ticketId}"></td>
+                <td th:text="${pm.borrowerName}"></td>
+                <td th:text="${pm.dueDate}"></td>
             </tr>
         </tbody>
     </table>

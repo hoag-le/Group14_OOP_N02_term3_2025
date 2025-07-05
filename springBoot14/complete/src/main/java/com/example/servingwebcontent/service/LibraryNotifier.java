@@ -45,7 +45,7 @@ public class LibraryNotifier {
                 .filter(p -> BorrowTicketUtils.isBookNearDueDate(p, warningDays))
                 .collect(Collectors.toList());
 
-            model.addAttribute("dsCanhBao", toWarn);
+            model.addAttribute("warningTickets", toWarn);
             return "canhbao";
         } catch (Exception e) {
             logger.error("Failed to show warnings", e);
@@ -70,8 +70,8 @@ public class LibraryNotifier {
                 .filter(p -> BorrowTicketUtils.isBookNearDueDate(p, warningDays))
                 .collect(Collectors.toList());
 
-            model.addAttribute("dsCanhBao", toWarn);
-            model.addAttribute("tenNguoiMuon", borrowerName);
+            model.addAttribute("warningTickets", toWarn);
+            model.addAttribute("borrowerName", borrowerName);
             return "canhbao";
         } catch (Exception e) {
             logger.error("Failed to show user warnings", e);
