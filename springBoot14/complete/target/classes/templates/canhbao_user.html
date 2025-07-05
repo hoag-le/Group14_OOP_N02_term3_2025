@@ -7,17 +7,17 @@
 </head>
 <body>
 <div class="container">
-    <h2 class="my-3">Thông báo cho <span th:text="${tenNguoiMuon}"></span></h2>
+    <h2 class="my-3">Thông báo cho <span th:text="${borrowerName}"></span></h2>
     <p>Sách bạn mượn sắp đến hạn trả. Vui lòng kiểm tra danh sách dưới đây:</p>
     <table class="table table-bordered">
         <thead>
         <tr><th>Mã phiếu</th><th>Tên người mượn</th><th>Ngày hết hạn</th></tr>
         </thead>
         <tbody>
-            <tr th:each="pm : ${dsCanhBao}">
-                <td th:text="${pm.maPhieu}"></td>
-                <td th:text="${pm.tenNguoiMuon}"></td>
-                <td th:text="${pm.ngayHetHan}"></td>
+            <tr th:each="pm : ${warningTickets}">
+                <td th:text="${pm.ticketId}"></td>
+                <td th:text="${pm.borrowerName}"></td>
+                <td th:text="${pm.dueDate}"></td>
             </tr>
         </tbody>
     </table>
