@@ -2,7 +2,12 @@ package com.example.servingwebcontent.models;
 
 import java.time.LocalDate;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Book {
+
+    private static final Logger logger = LoggerFactory.getLogger(Book.class);
     private int id;
     private String title;
     private String author;
@@ -54,26 +59,16 @@ public class Book {
     }
 
     public void checkOut() {
-        try {
-            if (isAvailable) {
-                isAvailable = false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            System.out.println("checkOut executed");
+        if (isAvailable) {
+            isAvailable = false;
+            logger.debug("checkOut executed");
         }
     }
 
     public void returnBook() {
-        try {
-            if (!isAvailable) {
-                isAvailable = true;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            System.out.println("returnBook executed");
+        if (!isAvailable) {
+            isAvailable = true;
+            logger.debug("returnBook executed");
         }
     }
 }

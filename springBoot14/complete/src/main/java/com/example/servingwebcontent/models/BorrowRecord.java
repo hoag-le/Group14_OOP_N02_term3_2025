@@ -1,7 +1,12 @@
 package com.example.servingwebcontent.models;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class BorrowRecord {
+
+    private static final Logger logger = LoggerFactory.getLogger(BorrowRecord.class);
     private Book book;
     private Member member;
     private Date borrowDate;
@@ -27,13 +32,8 @@ public class BorrowRecord {
     public void setDueDate(Date d) { this.dueDate = d; }
     
     public void setReturned(Date returnDate) {
-        try {
-            this.isReturned = true;
-            this.returnDate = returnDate;
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            System.out.println("setReturned executed");
-        }
+        this.isReturned = true;
+        this.returnDate = returnDate;
+        logger.debug("setReturned executed");
     }
 }

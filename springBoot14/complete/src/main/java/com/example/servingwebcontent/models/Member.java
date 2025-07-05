@@ -3,7 +3,12 @@ package com.example.servingwebcontent.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Member {
+
+    private static final Logger logger = LoggerFactory.getLogger(Member.class);
     private int id;
     private String name;
     private List<Book> borrowedBooks;
@@ -32,32 +37,22 @@ public class Member {
     }
 
     public void borrowBook(Book book) {
-        try {
-            if (book.isAvailable()) {
-                book.checkOut();
-                borrowedBooks.add(book);
-            } else {
-                System.out.println("Book is not available for borrowing");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            System.out.println("borrowBook executed");
+        if (book.isAvailable()) {
+            book.checkOut();
+            borrowedBooks.add(book);
+            logger.debug("borrowBook executed");
+        } else {
+            logger.warn("Book is not available for borrowing");
         }
     }
 
     public void returnBook(Book book) {
-        try {
-            if (borrowedBooks.contains(book)) {
-                book.returnBook();
-                borrowedBooks.remove(book);
-            } else {
-                System.out.println("This book was not borrowed by this member");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            System.out.println("returnBook executed");
+        if (borrowedBooks.contains(book)) {
+            book.returnBook();
+            borrowedBooks.remove(book);
+            logger.debug("returnBook executed");
+        } else {
+            logger.warn("This book was not borrowed by this member");
         }
     }
 }

@@ -8,35 +8,30 @@ import com.example.servingwebcontent.models.Member;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class LibraryPrinter {
+
+    private static final Logger logger = LoggerFactory.getLogger(LibraryPrinter.class);
+
     public static void printBorrowedBooks(Library library) {
-        try {
-            System.out.println("Borrowed Books:");
-            for (BorrowRecord record : library.getBorrowRecords()) {
-                if (!record.isReturned()) {
-                    Book b = record.getBook();
-                    Member m = record.getMember();
-                    System.out.println(b.getId() + " - " + b.getTitle()
-                            + " (borrowed by " + m.getName() + ")");
-                }
+        logger.info("Borrowed Books:");
+        for (BorrowRecord record : library.getBorrowRecords()) {
+            if (!record.isReturned()) {
+                Book b = record.getBook();
+                Member m = record.getMember();
+                logger.info("{} - {} (borrowed by {})", b.getId(), b.getTitle(), m.getName());
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
         }
     }
 
     public static List<BorrowRecord> getBorrowedRecords(Library library) {
         List<BorrowRecord> result = new ArrayList<>();
-        try {
-            for (BorrowRecord record : library.getBorrowRecords()) {
-                if (!record.isReturned()) {
-                    result.add(record);
-                }
+        for (BorrowRecord record : library.getBorrowRecords()) {
+            if (!record.isReturned()) {
+                result.add(record);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
         }
         return result;
     }
