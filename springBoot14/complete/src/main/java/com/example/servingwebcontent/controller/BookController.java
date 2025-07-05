@@ -42,21 +42,25 @@ public class BookController {
     @PutMapping("/{id}")
     public ResponseEntity<String> updateBook(@PathVariable int id, @RequestBody Book book) {
         book.setId(id);
-        boolean updated = bookDao.update(book);
-        if (updated) {
+        try {
+            bookDao.update(book);
             return ResponseEntity.ok("ok");
-        } else {
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("not found");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("database error");
         }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteBook(@PathVariable int id) {
-        boolean deleted = bookDao.delete(id);
-        if (deleted) {
+        try {
+            bookDao.delete(id);
             return ResponseEntity.ok("ok");
-        } else {
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("not found");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("database error");
         }
     }
 }

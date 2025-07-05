@@ -5,11 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.servingwebcontent.models.Member;
-
 import org.springframework.stereotype.Component;
 
 @Component
-public class MemberDao {
+public class MemberDao implements CrudRepository<Member> {
 
     public List<Member> findAll() {
         List<Member> result = new ArrayList<>();
@@ -26,6 +25,11 @@ public class MemberDao {
             throw new RuntimeException("Database error", e);
         }
         return result;
+    }
+
+    @Override
+    public List<Member> listAll() {
+        return findAll();
     }
 
     public void save(Member member) {
@@ -49,24 +53,54 @@ public class MemberDao {
         }
     }
 
-    public boolean update(Member member) {
+    @Override
+    public void create(Member obj) {
+        save(obj);
+    }
+
+    @Override
+    public Member read(int id) {
+        String sql = "SELECT id, name FROM members WHERE id = ?";
+        try (Connection conn = AivenDatabaseConfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return new Member(rs.getInt("id"), rs.getString("name"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Database error", e);
+        }
+        return null;
+    }
+
+    @Override
+    public void update(Member member) {
         String sql = "UPDATE members SET name = ? WHERE id = ?";
         try (Connection conn = AivenDatabaseConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, member.getName());
             ps.setInt(2, member.getId());
-            return ps.executeUpdate() > 0;
+            int rows = ps.executeUpdate();
+            if (rows == 0) {
+                throw new IllegalArgumentException("Member not found");
+            }
         } catch (SQLException e) {
             throw new RuntimeException("Database error", e);
         }
     }
 
-    public boolean delete(int id) {
+    @Override
+    public void delete(int id) {
         String sql = "DELETE FROM members WHERE id = ?";
         try (Connection conn = AivenDatabaseConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
-            return ps.executeUpdate() > 0;
+            int rows = ps.executeUpdate();
+            if (rows == 0) {
+                throw new IllegalArgumentException("Member not found");
+            }
         } catch (SQLException e) {
             throw new RuntimeException("Database error", e);
         }

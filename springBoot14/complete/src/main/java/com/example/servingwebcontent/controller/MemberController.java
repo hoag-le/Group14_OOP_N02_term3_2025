@@ -37,21 +37,25 @@ public class MemberController {
     @PutMapping("/{id}")
     public ResponseEntity<String> updateMember(@PathVariable int id, @RequestBody Member member) {
         member.setId(id);
-        boolean updated = memberDao.update(member);
-        if (updated) {
+        try {
+            memberDao.update(member);
             return ResponseEntity.ok("ok");
-        } else {
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("not found");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("database error");
         }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteMember(@PathVariable int id) {
-        boolean deleted = memberDao.delete(id);
-        if (deleted) {
+        try {
+            memberDao.delete(id);
             return ResponseEntity.ok("ok");
-        } else {
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("not found");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("database error");
         }
     }
 }

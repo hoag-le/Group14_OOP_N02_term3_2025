@@ -5,11 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.servingwebcontent.models.Book;
-
 import org.springframework.stereotype.Component;
 
 @Component
-public class BookDao {
+public class BookDao implements CrudRepository<Book> {
 
     public List<Book> findAll() {
         List<Book> result = new ArrayList<>();
@@ -26,6 +25,11 @@ public class BookDao {
             throw new RuntimeException("Database error", e);
         }
         return result;
+    }
+
+    @Override
+    public List<Book> listAll() {
+        return findAll();
     }
 
     public void save(Book book) {
@@ -50,29 +54,61 @@ public class BookDao {
         }
     }
 
-    public boolean update(Book book) {
+    @Override
+    public void create(Book obj) {
+        save(obj);
+    }
+
+    @Override
+    public Book read(int id) {
+        String sql = "SELECT id, title, author FROM books WHERE id = ?";
+        try (Connection conn = AivenDatabaseConfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return new Book(rs.getInt("id"), rs.getString("title"), rs.getString("author"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Database error", e);
+        }
+        return null;
+    }
+
+    @Override
+    public void update(Book book) {
         String sql = "UPDATE books SET title = ?, author = ? WHERE id = ?";
         try (Connection conn = AivenDatabaseConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, book.getTitle());
             ps.setString(2, book.getAuthor());
             ps.setInt(3, book.getId());
-            return ps.executeUpdate() > 0;
+            int rows = ps.executeUpdate();
+            if (rows == 0) {
+                throw new IllegalArgumentException("Book not found");
+            }
         } catch (SQLException e) {
             throw new RuntimeException("Database error", e);
         }
     }
 
-    public boolean delete(int id) {
+
+    @Override
+    public void delete(int id) {
         String sql = "DELETE FROM books WHERE id = ?";
         try (Connection conn = AivenDatabaseConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
-            return ps.executeUpdate() > 0;
+            int rows = ps.executeUpdate();
+            if (rows == 0) {
+                throw new IllegalArgumentException("Book not found");
+            }
         } catch (SQLException e) {
             throw new RuntimeException("Database error", e);
         }
     }
+
 
     /**
      * Simple search by title or author containing the provided keyword.

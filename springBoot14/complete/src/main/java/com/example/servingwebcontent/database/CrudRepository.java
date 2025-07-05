@@ -1,4 +1,4 @@
-package repository;
+package com.example.servingwebcontent.database;
 
 import java.util.List;
 
