@@ -29,7 +29,7 @@ public class LibraryNotifier {
     @Autowired
     private LibraryManager libraryManager;
 
-    @GetMapping("/warning")
+    @GetMapping("/warning-alt")
     public String showWarning(Model model) {
         try {
             List<BorrowTicket> tickets = List.of(
@@ -77,7 +77,7 @@ public class LibraryNotifier {
         }
     }
 
-    @GetMapping("/borrowed")
+    @GetMapping("/borrowed-alt")
     public String showBorrowedBooks(Model model) {
         try {
             List<BorrowRecord> borrowed = libraryManager.getBorrowRecords().stream()
