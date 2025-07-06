@@ -15,7 +15,7 @@ Link: [https://github.com/hoag-le/Group14_OOP_N02_term3_2025](https://github.com
 - Sử dụng `./mvnw spring-boot:run` (hoặc `./gradlew bootRun`) để khởi động ứng dụng Spring Boot.
 
 ## Giới thiệu cấu trúc dự án
-- Thư mục `springBoot14/complete/src/main/java` chứa các lớp `Book`, `Member`, `Library`, `BorrowRecord`, `BorrowTicket*`.
+- Thư mục `springBoot14/complete/src/main/java` chứa mã nguồn Spring Boot gồm các lớp như `Book`, `Member`, `Library`, `LibraryManager`, `BorrowRecord`, `BorrowTicket*`. `Library` quản lý dữ liệu trong bộ nhớ/file trong khi `LibraryManager` làm việc với cơ sở dữ liệu.
 - Thư mục `src/repository` chứa lớp `CrudRepository`.
 - Thư mục `test/models` chứa các test JUnit.
 
