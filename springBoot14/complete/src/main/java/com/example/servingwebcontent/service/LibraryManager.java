@@ -101,6 +101,19 @@ public class LibraryManager {
     }
 
     /**
+     * Get all borrow records of a member that are not yet returned.
+     */
+    public List<BorrowRecord> getBorrowRecordsForMember(int memberId) {
+        List<BorrowRecord> result = new ArrayList<>();
+        for (BorrowRecord r : borrowRecords) {
+            if (!r.isReturned() && r.getMember().getId() == memberId) {
+                result.add(r);
+            }
+        }
+        return result;
+    }
+
+    /**
      * Count how many times each book has been borrowed.
      *
      * @return map of book id to total borrow count

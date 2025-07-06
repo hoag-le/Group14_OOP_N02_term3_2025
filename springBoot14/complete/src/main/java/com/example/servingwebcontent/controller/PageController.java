@@ -80,6 +80,18 @@ public class PageController {
         }
     }
 
+    @GetMapping("/books/{id}")
+    public String bookDetail(@PathVariable int id, Model model) {
+        com.example.servingwebcontent.models.Book b = bookDao.read(id);
+        if (b == null) {
+            model.addAttribute("books", bookDao.findAll());
+            model.addAttribute("message", "Không tìm thấy sách");
+            return "books";
+        }
+        model.addAttribute("book", b);
+        return "book-detail";
+    }
+
     @GetMapping("/members")
     public String members(@RequestParam(value = "success", required = false) String success,
                           Model model) {
@@ -129,6 +141,19 @@ public class PageController {
             model.addAttribute("message", e.getMessage());
             return "members";
         }
+    }
+
+    @GetMapping("/members/{id}")
+    public String memberDetail(@PathVariable int id, Model model) {
+        com.example.servingwebcontent.models.Member m = memberDao.read(id);
+        if (m == null) {
+            model.addAttribute("members", memberDao.findAll());
+            model.addAttribute("message", "Không tìm thấy thành viên");
+            return "members";
+        }
+        model.addAttribute("member", m);
+        model.addAttribute("borrowed", libraryManager.getBorrowRecordsForMember(id));
+        return "member-detail";
     }
 
     @GetMapping("/borrow")

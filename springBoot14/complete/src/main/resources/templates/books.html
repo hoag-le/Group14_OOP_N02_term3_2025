@@ -24,16 +24,21 @@
 </nav>
 <div class="container">
     <div th:if="${message}" class="alert alert-info" th:text="${message}"></div>
+    <script th:if="${message}" th:inline="javascript">
+        let msg = /*[[${message}]]*/ "";
+        alert(msg);
+    </script>
     <h2>Danh sách Sách</h2>
     <table class="table table-bordered">
         <thead>
-            <tr><th>ID</th><th>Tiêu đề</th><th>Tác giả</th></tr>
+            <tr><th>ID</th><th>Tiêu đề</th><th>Tác giả</th><th>Chi tiết</th></tr>
         </thead>
         <tbody>
             <tr th:each="b : ${books}">
                 <td th:text="${b.id}"></td>
                 <td th:text="${b.title}"></td>
                 <td th:text="${b.author}"></td>
+                <td><a th:href="@{'/books/' + ${b.id}}">Xem</a></td>
             </tr>
         </tbody>
     </table>
@@ -41,15 +46,15 @@
     <form th:action="@{/books/add}" method="post">
         <div class="mb-3">
             <label class="form-label">ID</label>
-            <input type="number" class="form-control" name="id" required>
+            <input type="number" min="1" class="form-control" name="id" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Tiêu đề</label>
-            <input type="text" class="form-control" name="title" required>
+            <input type="text" class="form-control" name="title" required maxlength="100">
         </div>
         <div class="mb-3">
             <label class="form-label">Tác giả</label>
-            <input type="text" class="form-control" name="author" required>
+            <input type="text" class="form-control" name="author" required maxlength="100">
         </div>
         <button type="submit" class="btn btn-primary">Thêm</button>
     </form>
@@ -58,24 +63,24 @@
     <form th:action="@{/books/update}" method="post">
         <div class="mb-3">
             <label class="form-label">ID</label>
-            <input type="number" class="form-control" name="id" required>
+            <input type="number" min="1" class="form-control" name="id" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Tiêu đề</label>
-            <input type="text" class="form-control" name="title" required>
+            <input type="text" class="form-control" name="title" required maxlength="100">
         </div>
         <div class="mb-3">
             <label class="form-label">Tác giả</label>
-            <input type="text" class="form-control" name="author" required>
+            <input type="text" class="form-control" name="author" required maxlength="100">
         </div>
         <button type="submit" class="btn btn-warning">Cập nhật</button>
     </form>
 
     <h3 class="mt-4">Xóa Sách</h3>
-    <form th:action="@{/books/delete}" method="post">
+    <form th:action="@{/books/delete}" method="post" onsubmit="return confirm('Bạn có chắc chắn muốn xóa sách này?')">
         <div class="mb-3">
             <label class="form-label">ID</label>
-            <input type="number" class="form-control" name="id" required>
+            <input type="number" min="1" class="form-control" name="id" required>
         </div>
         <button type="submit" class="btn btn-danger">Xóa</button>
     </form>
