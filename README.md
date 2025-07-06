@@ -14,6 +14,23 @@ Link: [https://github.com/hoag-le/Group14_OOP_N02_term3_2025](https://github.com
 - Vào `springBoot14/complete`.
 - Sử dụng `./mvnw spring-boot:run` (hoặc `./gradlew bootRun`) để khởi động ứng dụng Spring Boot.
 
+## Cấu hình Database
+Ứng dụng sử dụng cơ sở dữ liệu Aiven nên cần khai báo các biến môi trường trước khi chạy:
+
+```bash
+export AIVEN_JDBC_URL=<jdbc-url>
+export AIVEN_DB_USER=<username>
+export AIVEN_DB_PASSWORD=<password>
+```
+
+Nếu muốn đơn giản, bạn có thể tạo file `springBoot14/complete/src/main/resources/application.properties` và điền trực tiếp các thông tin kết nối:
+
+```
+spring.datasource.url=<jdbc-url>
+spring.datasource.username=<username>
+spring.datasource.password=<password>
+```
+
 ## Giới thiệu cấu trúc dự án
 - Thư mục `springBoot14/complete/src/main/java` chứa mã nguồn Spring Boot gồm các lớp như `Book`, `Member`, `Library`, `LibraryManager`, `BorrowRecord`, `BorrowTicket*`. `Library` quản lý dữ liệu trong bộ nhớ/file trong khi `LibraryManager` làm việc với cơ sở dữ liệu.
 - Thư mục `src/repository` chứa lớp `CrudRepository`.
