@@ -23,7 +23,7 @@ public class PageController {
     public String index(Model model) {
         model.addAttribute("bookCount", bookDao.findAll().size());
         model.addAttribute("memberCount", memberDao.findAll().size());
-        model.addAttribute("borrowCount", libraryManager.getBorrowRecords().size());
+        model.addAttribute("borrowCount", libraryManager.getCurrentBorrowCount());
         return "index";
     }
 
@@ -191,5 +191,13 @@ public class PageController {
                         .toList();
         model.addAttribute("warningRecords", warning);
         return "canhbao";
+    }
+
+    @GetMapping("/stats")
+    public String statsPage(Model model) {
+        model.addAttribute("counts", libraryManager.getBorrowCountByBook());
+        model.addAttribute("books", bookDao.findAll());
+        model.addAttribute("currentBorrow", libraryManager.getCurrentBorrowCount());
+        return "stats";
     }
 }

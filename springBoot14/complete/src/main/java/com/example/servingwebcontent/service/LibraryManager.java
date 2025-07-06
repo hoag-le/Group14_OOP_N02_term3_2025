@@ -3,6 +3,8 @@ package com.example.servingwebcontent.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import jakarta.annotation.PostConstruct;
@@ -83,5 +85,32 @@ public class LibraryManager {
 
     public List<BorrowRecord> getBorrowRecords() {
         return borrowRecords;
+    }
+
+    /**
+     * Get number of borrow records that are not yet returned.
+     */
+    public int getCurrentBorrowCount() {
+        int count = 0;
+        for (BorrowRecord r : borrowRecords) {
+            if (!r.isReturned()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Count how many times each book has been borrowed.
+     *
+     * @return map of book id to total borrow count
+     */
+    public Map<Integer, Integer> getBorrowCountByBook() {
+        Map<Integer, Integer> result = new HashMap<>();
+        for (BorrowRecord r : borrowRecords) {
+            int id = r.getBook().getId();
+            result.put(id, result.getOrDefault(id, 0) + 1);
+        }
+        return result;
     }
 }

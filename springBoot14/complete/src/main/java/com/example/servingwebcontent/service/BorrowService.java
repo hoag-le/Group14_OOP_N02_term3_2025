@@ -15,15 +15,23 @@ import com.example.servingwebcontent.models.Member;
 public final class BorrowService {
     private BorrowService() {}
 
+    /** Maximum number of books a member can borrow at the same time. */
+    public static final int MAX_BORROW_LIMIT = 3;
+
     public static String borrowBook(Member member, Book book, int days,
                                     List<BorrowRecord> records,
                                     Runnable afterBorrow) {
         if (days <= 0) {
             return "Số ngày mượn không hợp lệ";
         }
-        if (member == null || book == null || !book.isAvailable()
-                || isBookBorrowed(book.getId(), records)) {
+        if (member == null || book == null) {
             return "Không thể mượn sách";
+        }
+        if (!book.isAvailable() || isBookBorrowed(book.getId(), records)) {
+            return "Sách hiện không có sẵn";
+        }
+        if (member.getBorrowedBooks().size() >= MAX_BORROW_LIMIT) {
+            return "Bạn đã mượn quá số lượng sách cho phép";
         }
 
         Date borrowDate = new Date();
