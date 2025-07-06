@@ -76,23 +76,6 @@ spring.datasource.password=<password>
 
 ### Sơ đồ Hành vi (Behavioural Diagrams)
 
-*(Các sơ đồ hành vi chi tiết sẽ được thiết kế và cập nhật hình ảnh hoặc liên kết tại đây sau khi hoàn thiện)*
-
-1.  **Sơ đồ Tuần tự (Sequence Diagram):**
-    *   Mô tả tương tác giữa các đối tượng trong một kịch bản cụ thể.
-    *   Ví dụ: Kịch bản "Thành viên mượn sách", "Thêm sách mới vào thư viện".
-    *   *[Placeholder cho hình ảnh/liên kết Sơ đồ Tuần tự]*
-
-2.  **Sơ đồ Hoạt động (Activity Diagram):**
-    *   Mô tả luồng công việc hoặc quy trình của một chức năng.
-    *   Ví dụ: Quy trình "Xử lý yêu cầu mượn sách", "Quy trình đăng ký thành viên mới".
-    *   *[Placeholder cho hình ảnh/liên kết Sơ đồ Hoạt động]*
-
-3.  **Sơ đồ Ca sử dụng (Use Case Diagram):**
-    *   Mô tả các chức năng chính của hệ thống từ góc độ người dùng (actors).
-    *   Ví dụ: Actor "Thủ thư" có các use case: "Quản lý Sách", "Quản lý Thành viên", "Quản lý Mượn/Trả". Actor "Thành viên" có use case: "Tìm kiếm Sách", "Xem thông tin cá nhân".
-    *   *[Placeholder cho hình ảnh/liên kết Sơ đồ Ca sử dụng]*
-    *   
 ![Behavioural Diagrams](/docs/SequenceDiagram.jpg)
 
 ### CRUD
